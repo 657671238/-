@@ -21,7 +21,7 @@
 		}
 		#left_div{
 			background: #fcfcfc;
-			width: 10%;
+			width: 120px;
 			height: 650px;
 			float: left;
 		}
