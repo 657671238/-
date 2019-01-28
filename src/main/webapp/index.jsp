@@ -29,7 +29,7 @@
 </head>
 <body>
 	<div id="secBody">
-		<form action="#" method="post" id="loadForm">
+		<form action="loginServlet" method="post" id="loadForm">
 			<div class="innerBody">
 				<div class="tableTap">
 					<h3 class="f1">赏金系统登陆</h3>

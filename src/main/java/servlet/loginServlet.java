@@ -30,9 +30,9 @@ public class loginServlet extends HttpServlet {
 		String un=req.getParameter("userName");
 		String pwd=req.getParameter("password");
 		pwd = new MD5_String().encryption(pwd);
-		userDao us = new userDao_imp();
+		userService us = new userService_imp();
 		boolean isexist=us.isexist(un,pwd);
-		if(!isexist) {
+		if(isexist) {
 			HttpSession session=req.getSession();
 			session.setAttribute("username", un);
 			resp.sendRedirect("mainServlet");

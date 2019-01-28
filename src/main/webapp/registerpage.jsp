@@ -29,6 +29,7 @@
 <script type="text/javascript">
 	window.onload=function(){
 		var phoneNumber="<%=request.getParameter("phoneNumber")%>";
+		var message1 = "<%=request.getAttribute("message1") %>";
 		if(phoneNumber=='null'){
 			document.getElementById("userName").value="";	
 			console.log(phoneNumber);
@@ -39,10 +40,14 @@
 			console.log(phoneNumber+"123");
 
 		}
+		if(message1 != 'null'){
+			alert(message1);
+		}
+			
 	};
 	function smsService(){
 		var phoneNumber=document.getElementById("userName").value;
-		alert(phoneNumber);
+	
 		window.location.href="smsServlet?phoneNumber="+phoneNumber;
 	};
 	function check(){
@@ -66,10 +71,11 @@
 </head>
 <body>
 	<div id="secBody">
-		<form action="loginServlet" method="post" id="loadForm">
+		<form action="registerServlet" method="post" id="loadForm">
 			<div class="innerBody">
 				<div class="tableTap">
 					<h3 class="f1">注册新用户</h3>
+					<a href="index.jsp">返回登陆</a>
 				</div>
 				<div class="tableItem">
 					<i class="userHead"></i>

@@ -10,7 +10,7 @@ public class MD5_test {
 
 	@Test
 	public void testEncryption() {
-		System.out.println(new MD5_String().encryption("123456"));
+		System.out.println(new MD5_String().encryption("15871871061"));
 	}
 
 }

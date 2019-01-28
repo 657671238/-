@@ -41,8 +41,9 @@
 		<div id="left_div">
 			<ul>
 				<li><a href="myMessage.jsp" target="iframeName">我的信息</a></li>
-				<li><a href="#" target="iframeName">可选任务</a></li>
-				<li><a href="#" target="iframeName">发布任务</a></li>
+				<li><a href="selectableTasks.jsp" target="iframeName">可选任务</a></li>
+				<li><a href="publishTasks.jsp" target="iframeName">发布任务</a></li>
+				<li><a href="selectedTasks.jsp" target="iframeName">已选任务</a></li>
 			</ul>
 		</div>
 		<iframe src="myMessage.jsp" name="iframeName" 

@@ -35,11 +35,12 @@ public class userDao_test {
 		User us = new User();
 		us.setPhoneNumber("15871871061");
 		us.setName("xukang123");
+		//us.setPwd("e10adc3949ba59abbe56e057f20f883e");
 		us.setBirth(new java.sql.Date(new Date().getTime()));
 		boolean updateSuccess = new userDao_imp().updateUser(us);
 		
 		if(updateSuccess) {
-			System.out.println("数据添加成功");
+			System.out.println("数据修改成功");
 		}
 	}
 
