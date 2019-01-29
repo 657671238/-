@@ -35,7 +35,7 @@ public class loginServlet extends HttpServlet {
 		if(isexist) {
 			HttpSession session=req.getSession();
 			session.setAttribute("username", un);
-			resp.sendRedirect("mainServlet");
+			resp.sendRedirect("myMessageServlet");
 		}
 		else {
 			req.setAttribute("message", "账号或密码错误");

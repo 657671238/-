@@ -14,4 +14,8 @@ public interface userDao {
 	
 	public boolean updateUser(User us);
 	// TODO 修改用户信息
+	
+	public User queryone(String phoneNumber);
+	// TODO 根据主键查询用户信息
+
 }

@@ -58,5 +58,24 @@ public class userDao_imp implements userDao{
 		}
 		return false;
 	}
+	public User queryone(String phoneNumber) {
+		// TODO Auto-generated method stub
+		User us = new User();
+		try {
+			String sql = "select * from users where phoneNumber = ?";
+			ResultSet rs = MyDb.getMyDb().query(sql, phoneNumber);
+			if(rs.next()) {
+				us.setPhoneNumber(phoneNumber);
+				us.setName(rs.getString("name"));
+				us.setSchool(rs.getString("school"));
+				us.setBirth(rs.getDate("birth"));
+			}
+			return us;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return us;
+	}
 
 }

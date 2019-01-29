@@ -31,4 +31,10 @@ public class userService_imp implements userService {
 		return ud.updateUser(us);
 	}
 
+	public User queryone(String phoneNumber) {
+		// TODO Auto-generated method stub
+		userDao ud = new userDao_imp();
+		return ud.queryone(phoneNumber);
+	}
+
 }
