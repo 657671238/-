@@ -29,7 +29,9 @@ public class myMessageServlet extends HttpServlet {
 		String us = (String) session.getAttribute("username");
 		if (us == null) {
 			req.getRequestDispatcher("/pleaselogin.jsp").forward(req, resp);
+			return;
 		}
+
 		userService users = new userService_imp();
 		User user = users.queryone(us);
 		req.setAttribute("user", user);

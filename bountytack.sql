@@ -21,6 +21,7 @@ create table `tasks`(
 	`pushPhone` char(12) NOT NULL,/* 发布人电话*/
 	`state` char(10) NOT NULL,/* 任务状态*/
 	`bounty` int(10) NOT NULL,/* 赏金*/
+	`place` char(15) NOT NULL,/*  任务地点*/
 	primary key(`id`),
 	foreign key(`pushPhone`) references users(`phoneNumber`)
 	on update cascade on delete cascade

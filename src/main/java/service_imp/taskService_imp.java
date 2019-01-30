@@ -15,4 +15,10 @@ public class taskService_imp implements taskService {
 		return td.queryall();
 	}
 
+	public boolean addtask(task t) {
+		// TODO Auto-generated method stub
+		taskDao td = new taskDao_imp();
+		return td.addtask(t);
+	}
+
 }

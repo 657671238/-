@@ -13,9 +13,9 @@ public class taskDao_imp implements taskDao {
 	public boolean addtask(task t) {
 		// TODO Auto-generated method stub
 		try {
-			String sql = "insert into tasks(taskTitle,taskBody,publishDate,pushPhone,state,bounty) value(?,?,?,?,?,?)";
+			String sql = "insert into tasks(taskTitle,taskBody,publishDate,pushPhone,state,bounty,place) value(?,?,?,?,?,?,?)";
 			boolean addtaskSuccess = MyDb.getMyDb().cud(sql, t.getTaskTitle(),t.getTaskBody(),t.getPublishDate(),
-			t.getPushPhone(),t.getState(),t.getBounty());
+			t.getPushPhone(),t.getState(),t.getBounty(),t.getPlace());
 			return addtaskSuccess;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -37,10 +37,11 @@ public class taskDao_imp implements taskDao {
 		// TODO Auto-generated method stub
 		List<task> tasklist = new ArrayList<task>();
 		try {
-			String sql = "select * from tasks";
-			ResultSet alltasks = MyDb.getMyDb().query(sql,null);
+			String sql = "select *  from tasks order by publishDate desc";
+			ResultSet alltasks = MyDb.getMyDb().query(sql);
 			while (alltasks.next()) {
 				task t = new task();
+				t.setId(alltasks.getInt("id"));
 				t.setTaskTitle(alltasks.getString("taskTitle"));
 				t.setTaskBody(alltasks.getString("taskBody"));
 				t.setPublishDate(alltasks.getDate("publishDate"));
