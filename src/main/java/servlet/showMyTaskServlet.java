@@ -1,7 +1,7 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +14,10 @@ import bean.task;
 import service.taskService;
 import service_imp.taskService_imp;
 
-@WebServlet("/selectableTasksServlet")
-public class selectableTasksServlet extends HttpServlet {
+
+
+@WebServlet("/showMyTaskServlet")
+public class showMyTaskServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -30,11 +32,13 @@ public class selectableTasksServlet extends HttpServlet {
 			req.getRequestDispatcher("/pleaselogin.jsp").forward(req, resp);
 			return;
 		}
+		String taskId = req.getParameter("taskId");
+		int task_Id = Integer.parseInt(taskId);
 		taskService ts = new taskService_imp();
-		List<task> tasklist = ts.queryall();
-		req.setAttribute("tasklist", tasklist);
-		req.getRequestDispatcher("/selectableTasks.jsp").forward(req, resp);
-		
+		task task = ts.queryone(task_Id);
+		req.setAttribute("task", task);
+		req.getRequestDispatcher("/showMyTask.jsp").forward(req, resp);
+
 	}
 
 }

@@ -2,6 +2,9 @@ package dao_imp;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mysql.jdbc.interceptors.ServerStatusDiffInterceptor;
+
 import java.sql.ResultSet;
 
 import bean.task;
@@ -32,6 +35,8 @@ public class taskDao_imp implements taskDao {
 		// TO.DO Auto-generated method stub
 		return false;
 	}
+	
+	
 
 	public List<task> queryall() {
 		// TODO Auto-generated method stub
@@ -57,4 +62,63 @@ public class taskDao_imp implements taskDao {
 		return tasklist;
 	}
 
+	public String getPushPerson(int taskId) {
+		// TODO Auto-generated method stub
+		String phoneNumber = new String();
+		try {
+			String sql = "select pushPhone from tasks where id=?";
+			ResultSet rs = MyDb.getMyDb().query(sql, taskId);
+			if(rs.next()) {
+				phoneNumber = rs.getString("pushPhone");
+			}
+			return phoneNumber;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return phoneNumber;
+	}
+
+	public task queryone(int id) {
+		// TODO Auto-generated method stub
+		task t = new task();
+		t.setId(id);
+		try {
+			String sql = "select * from tasks where id=?";
+			ResultSet rs = MyDb.getMyDb().query(sql, id);
+			if(rs.next()) {
+				t.setTaskTitle(rs.getString("taskTitle"));
+				t.setTaskBody(rs.getString("taskBody"));
+				t.setPublishDate(rs.getDate("publishDate"));
+				t.setPushPhone(rs.getString("pushPhone"));
+				t.setState(rs.getString("state"));
+				t.setBounty(rs.getInt("bounty"));
+			}
+			return t;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return t;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

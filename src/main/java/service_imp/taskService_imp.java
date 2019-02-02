@@ -21,4 +21,20 @@ public class taskService_imp implements taskService {
 		return td.addtask(t);
 	}
 
+	public boolean isMytask(int taskId, String phoneNumber) {
+		// TODO Auto-generated method stub
+		taskDao ts = new taskDao_imp();
+		String pushman = ts.getPushPerson(taskId);
+		if(phoneNumber.equals(pushman)) {
+			return true;
+		}
+		return false;
+	}
+
+	public task queryone(int id) {
+		// TODO Auto-generated method stub
+		taskDao td = new taskDao_imp();
+		return td.queryone(id);
+	}
+
 }

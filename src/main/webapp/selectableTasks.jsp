@@ -29,6 +29,12 @@
 			height: 100%;
 		}
 	</style>
+	<script>
+		function find(id){
+			//alert(id);
+			window.location.href="showTaskServlet?taskId="+id;
+		}
+	</script>
 </head>
 <body>
 	<div id="header">
@@ -42,7 +48,7 @@
 			<ul>
 				<!-- 新闻列表 ，静态HTML代码与动态代码混合编程-->
 				<c:forEach items="${tasklist}" var="row">
-					<li>
+					<li id=${row.id} onclick="find(this.id)">
 						<div>
 							<div>标题：${row.taskTitle}</div>
 							<div>内容：${row.taskBody}</div>
@@ -50,7 +56,7 @@
 							<div>发布日期：${row.publishDate}</div>
 							<div>任务状态：${row.state}</div>
 							<div>任务赏金：${row.bounty}</div>
-							<div>任务编号：${row.id}</div>
+							<div style="display:none" value=${row.id}>${row.id}</div>
 						</div></li>
 				</c:forEach>
 			</ul>
