@@ -3,7 +3,7 @@
 #left_div {
 	background: #fcfcfc;
 	width: 200px;
-	height: 650px;
+	height: 1000px;
 	float: left;
 }
 </style>

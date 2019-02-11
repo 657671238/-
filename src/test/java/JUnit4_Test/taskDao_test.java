@@ -20,7 +20,7 @@ public class taskDao_test {
 		t.setPushPhone("15871871061");
 		t.setState("0");
 		t.setTaskBody("帮我买一瓶矿泉水");
-		t.setPublishDate(new java.sql.Date(new Date().getTime()));
+		t.setPublishDate("");
 		boolean addtaskSuccess = new taskDao_imp().addtask(t);
 		System.out.println(addtaskSuccess);
 	}

@@ -6,6 +6,7 @@ import java.util.List;
 import com.mysql.jdbc.interceptors.ServerStatusDiffInterceptor;
 
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 
 import bean.task;
 import dao.taskDao;
@@ -33,6 +34,13 @@ public class taskDao_imp implements taskDao {
 
 	public boolean deletetask(int id) {
 		// TO.DO Auto-generated method stub
+		try {
+			String sql = "delete from task where id=?";
+			boolean successdel = MyDb.getMyDb().cud(sql, id);
+			return successdel;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return false;
 	}
 	
@@ -49,7 +57,8 @@ public class taskDao_imp implements taskDao {
 				t.setId(alltasks.getInt("id"));
 				t.setTaskTitle(alltasks.getString("taskTitle"));
 				t.setTaskBody(alltasks.getString("taskBody"));
-				t.setPublishDate(alltasks.getDate("publishDate"));
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				t.setPublishDate(alltasks.getString("publishDate"));
 				t.setPushPhone(alltasks.getString("pushPhone"));
 				t.setState(alltasks.getString("state"));
 				t.setBounty(alltasks.getInt("bounty"));
@@ -88,7 +97,7 @@ public class taskDao_imp implements taskDao {
 			if(rs.next()) {
 				t.setTaskTitle(rs.getString("taskTitle"));
 				t.setTaskBody(rs.getString("taskBody"));
-				t.setPublishDate(rs.getDate("publishDate"));
+				t.setPublishDate(rs.getString("publishDate"));
 				t.setPushPhone(rs.getString("pushPhone"));
 				t.setState(rs.getString("state"));
 				t.setBounty(rs.getInt("bounty"));

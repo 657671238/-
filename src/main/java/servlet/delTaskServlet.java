@@ -1,9 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
-import java.util.concurrent.atomic.DoubleAdder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,8 +13,8 @@ import bean.task;
 import service.taskService;
 import service_imp.taskService_imp;
 
-@WebServlet("/addTaskServlet")
-public class addTaskServlet extends HttpServlet {
+@WebServlet("/delTaskServlet")
+public class delTaskServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -32,26 +29,16 @@ public class addTaskServlet extends HttpServlet {
 			req.getRequestDispatcher("/pleaselogin.jsp").forward(req, resp);
 			return;
 		}
-		req.setCharacterEncoding("UTF-8");
-
+		String taskId = req.getParameter("taskId");
+		int task_Id = Integer.parseInt(taskId);
 		taskService ts = new taskService_imp();
-		task t = new task();
-		t.setTaskTitle(req.getParameter("taskTitle"));
-		t.setTaskBody(req.getParameter("taskBody"));
-		t.setBounty(Integer.parseInt(req.getParameter("bounty")));
-		t.setPlace(req.getParameter("place"));
-		t.setPushPhone(us);
-		t.setState("0");
-		java.util.Date date = new java.util.Date();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		t.setPublishDate(sdf.format(date));
-		
-		boolean addtaskSuccess = ts.addtask(t);
-		System.out.println(addtaskSuccess);
-		if (addtaskSuccess) {
-			System.out.println("添加成功");
-			req.setAttribute("addMessage", "add success!");
-			req.getRequestDispatcher("/publishTasks.jsp").forward(req, resp);
+		boolean successdel = ts.deletetask(task_Id);
+		if (successdel) {
+			System.out.println("删除成功");
+			req.setAttribute("delMessage", "delete success!");
+			req.getRequestDispatcher("/selectableTasksSerclet").forward(req, resp);
 		}
+
 	}
+
 }

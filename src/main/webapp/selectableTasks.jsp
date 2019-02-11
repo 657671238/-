@@ -20,7 +20,7 @@
 		}
 		#mainer{
 			width: 100%;
-			height: 650px;
+			height: 100%;
 		}
 		.iframe_right{
 			/*float: left;*/

@@ -12,5 +12,7 @@ public interface taskService {
 	public boolean isMytask(int taskId,String phoneNumber);
 	
 	public task queryone(int id);
+	
+	public boolean deletetask(int id);
 
 }

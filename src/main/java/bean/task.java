@@ -1,6 +1,6 @@
 package bean;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class task {
 
@@ -8,7 +8,7 @@ public class task {
 	private String taskTitle;//任务标题
 	private String taskBody;//任务内容
 	private String pushPhone;//发布人电话
-	private Date publishDate;//发布日期
+	private String publishDate;//发布日期
 	private String state;//任务状态
 	private int bounty;//赏金数量
 	private String place;//任务地点
@@ -36,10 +36,10 @@ public class task {
 	public void setPushPhone(String pushPhone) {
 		this.pushPhone = pushPhone;
 	}
-	public Date getPublishDate() {
+	public String getPublishDate() {
 		return publishDate;
 	}
-	public void setPublishDate(Date publishDate) {
+	public void setPublishDate(String publishDate) {
 		this.publishDate = publishDate;
 	}
 	public String getState() {
