@@ -31,7 +31,8 @@
 			alert("修改键位");
 		};
 		function deltask(){
-			
+			alert("确认撤销任务");
+			window.location.href="delTaskServlet?taskId="+${task.id};
 		};
 	</script>
 </head>
@@ -44,14 +45,16 @@
 		<div class="iframe_right" >
 		    	 <br/><h3 class="text-center"><strong>查看我发布的任务</strong></h3>
 		 <form method="post" action="#" class="form">
-			任务编号：<input type="text" name="phoneNumber" value="${task.id}"> <br/>
+			任务编号：<input type="text" disabled="disabled" name="phoneNumber" value="${task.id}"> <br/>
+			发布日期：<input type="text" disabled="disabled" name="birth" value="${task.publishDate}"> <br/>
+			任务状态：<input type="text" disabled="disabled" name="state" value="${task.state}"> <br/>
 			任务标题：<input type="text" name="name" value="${task.taskTitle}"> <br/>
 			任务内容：<input type="text" name="school" value="${task.taskBody}"> <br/>
-			发布日期：<input type="text" name="birth" value="${task.publishDate}"> <br/>
-			<input type="submit" value="确认修改" class="btn" onclick=update() />
-			<input type="submit" value="撤销任务" class="btn" onclick=deltask() />
-			<div><input type="submit" value="查看请求人员" class="btn" onclick=update() /></div>
-			</form>
+			任务赏金：<input type="text" name="bounty" value="${task.bounty}"> <br/>
+            <input type="submit" value="确认修改" class="btn"  />
+		</form>
+		<div><button type="submit" value="查看请求人员" class="btn" onclick=update()>查看请求人员</button></div>
+		<button  value="撤销任务" class="btn" onclick=deltask()>撤销任务</button>
 		</div>
 	</div>
 	

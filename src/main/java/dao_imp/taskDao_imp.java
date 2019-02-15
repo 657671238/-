@@ -35,7 +35,7 @@ public class taskDao_imp implements taskDao {
 	public boolean deletetask(int id) {
 		// TO.DO Auto-generated method stub
 		try {
-			String sql = "delete from task where id=?";
+			String sql = "delete from tasks where id=?";
 			boolean successdel = MyDb.getMyDb().cud(sql, id);
 			return successdel;
 		} catch (Exception e) {

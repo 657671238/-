@@ -13,8 +13,8 @@ import bean.task;
 import service.taskService;
 import service_imp.taskService_imp;
 
-@WebServlet("/delTaskServlet")
-public class delTaskServlet extends HttpServlet {
+@WebServlet("/updateTaskServlet")
+public class updateTaskServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -29,19 +29,8 @@ public class delTaskServlet extends HttpServlet {
 			req.getRequestDispatcher("/pleaselogin.jsp").forward(req, resp);
 			return;
 		}
-		String taskId = req.getParameter("taskId");
-		int task_Id = Integer.parseInt(taskId);
-		System.out.println(task_Id);
-		taskService ts = new taskService_imp();
-		boolean successdel = ts.deletetask(task_Id);
-		System.out.println(successdel);
-		if (successdel) {
-			System.out.println("删除成功");
-			req.setAttribute("delMessage", "delete success!");
-			req.getRequestDispatcher("/selectableTasksServlet").forward(req, resp);
-			return;
-		}
+		
+		
 
 	}
-
 }
