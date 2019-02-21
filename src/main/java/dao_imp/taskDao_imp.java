@@ -29,6 +29,14 @@ public class taskDao_imp implements taskDao {
 
 	public boolean updatetask(task t) {
 		// TODO Auto-generated method stub
+		try {
+			String sql = "update tasks set taskTitle=? ,taskBody=? ,bounty =? where id=?";
+			boolean successupdate = MyDb.getMyDb().cud(sql,t.getTaskTitle(),t.getTaskBody(),t.getBounty(),t.getId());
+			return successupdate;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 		return false;
 	}
 

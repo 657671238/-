@@ -14,5 +14,7 @@ public interface taskService {
 	public task queryone(int id);
 	
 	public boolean deletetask(int id);
+	
+	public boolean updatetask(task t);
 
 }

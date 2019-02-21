@@ -44,12 +44,12 @@
    		<%@ include file="mainpage.jsp" %>
 		<div class="iframe_right" >
 		    	 <br/><h3 class="text-center"><strong>查看我发布的任务</strong></h3>
-		 <form method="post" action="#" class="form">
-			任务编号：<input type="text" disabled="disabled" name="phoneNumber" value="${task.id}"> <br/>
-			发布日期：<input type="text" disabled="disabled" name="birth" value="${task.publishDate}"> <br/>
-			任务状态：<input type="text" disabled="disabled" name="state" value="${task.state}"> <br/>
-			任务标题：<input type="text" name="name" value="${task.taskTitle}"> <br/>
-			任务内容：<input type="text" name="school" value="${task.taskBody}"> <br/>
+		 <form method="post" action="updateTaskServlet" class="form">
+			任务编号：<input type="text" onfocus=this.blur() name="id" value="${task.id}"> <br/>
+			发布日期：<input type="text" onfocus=this.blur() name="date" value="${task.publishDate}"> <br/>
+			任务状态：<input type="text" onfocus=this.blur() name="state" value="${task.state}"> <br/>
+			任务标题：<input type="text" name="title" value="${task.taskTitle}"> <br/>
+			任务内容：<input type="text" name="body" value="${task.taskBody}"> <br/>
 			任务赏金：<input type="text" name="bounty" value="${task.bounty}"> <br/>
             <input type="submit" value="确认修改" class="btn"  />
 		</form>

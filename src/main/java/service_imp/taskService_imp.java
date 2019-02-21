@@ -43,4 +43,10 @@ public class taskService_imp implements taskService {
 		return td.deletetask(id);
 	}
 
+	public boolean updatetask(task t) {
+		// TODO Auto-generated method stub
+		taskDao td = new taskDao_imp();
+		return td.updatetask(t);
+	}
+
 }
