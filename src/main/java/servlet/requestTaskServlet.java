@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,6 +39,9 @@ public class requestTaskServlet extends HttpServlet {
 		request.setMyPhone(un);
 		request.setPublishPhone(publishphone);
 		request.setTaskId(taskid);
+		Date dt = new Date();
+		java.sql.Date date = new java.sql.Date(dt.getTime());
+		(request).setRequestDate(date);
 		requestService rs = new requestService_imp();
 		
 	}

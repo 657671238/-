@@ -22,4 +22,6 @@ public interface taskDao {
 	
 	//查询单个任务的全部信息
 	public task queryone(int id);
+	
+	public boolean changeState(int id);
 }

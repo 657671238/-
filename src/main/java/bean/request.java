@@ -1,9 +1,18 @@
 package bean;
 
+import java.sql.Date;
+
 public class request {
 	private int publishPhone;
 	private int myPhone;
 	private int taskId;
+	private Date requestDate;
+	public Date getRequestDate() {
+		return requestDate;
+	}
+	public void setRequestDate(Date requestDate) {
+		this.requestDate = requestDate;
+	}
 	public int getPublishPhone() {
 		return publishPhone;
 	}

@@ -117,6 +117,34 @@ public class taskDao_imp implements taskDao {
 		return t;
 	}
 
+	public boolean changeState(int id) {
+		// TODO Auto-generated method stub
+		int state = this.queryState(id);
+		String newstate = state+1+"";
+		try {
+			String sql = "update tasks set state =? where id =?";
+			boolean successChange = MyDb.getMyDb().cud(sql, newstate, id);
+			return successChange;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
+	
+	public int queryState(int id) {
+		int state1=0;
+		try {
+			String sql = "select state from tasks where id =?";
+			ResultSet rs = MyDb.getMyDb().query(sql, id);
+			String state = rs.getString("state");
+			state1 = Integer.parseInt(state);
+			return state1;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return state1;
+	}
+
 }
 
 

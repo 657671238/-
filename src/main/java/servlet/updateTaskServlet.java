@@ -1,6 +1,5 @@
 package servlet;
 
-import java.awt.Taskbar;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
