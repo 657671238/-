@@ -3,8 +3,8 @@ package bean;
 import java.sql.Date;
 
 public class request {
-	private int publishPhone;
-	private int myPhone;
+	private String publishPhone;
+	private String myPhone;
 	private int taskId;
 	private Date requestDate;
 	public Date getRequestDate() {
@@ -13,16 +13,16 @@ public class request {
 	public void setRequestDate(Date requestDate) {
 		this.requestDate = requestDate;
 	}
-	public int getPublishPhone() {
+	public String getPublishPhone() {
 		return publishPhone;
 	}
-	public void setPublishPhone(int publishPhone) {
+	public void setPublishPhone(String publishPhone) {
 		this.publishPhone = publishPhone;
 	}
-	public int getMyPhone() {
+	public String getMyPhone() {
 		return myPhone;
 	}
-	public void setMyPhone(int myPhone) {
+	public void setMyPhone(String myPhone) {
 		this.myPhone = myPhone;
 	}
 	public int getTaskId() {

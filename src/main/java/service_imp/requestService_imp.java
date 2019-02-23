@@ -7,8 +7,8 @@ import service.requestService;;
 public class requestService_imp implements requestService {
 	public boolean requestTask(request r){
 		requestDao rd = new requestDao_imp();
-		//boolean successRequest = rd
-		return false;
+		boolean successRequest = rd.addRequest(r);
+		return successRequest;
 	}
 
 }

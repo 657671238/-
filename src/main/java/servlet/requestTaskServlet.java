@@ -33,17 +33,15 @@ public class requestTaskServlet extends HttpServlet {
 		String taskId = req.getParameter("id");
 		int taskid = Integer.parseInt(taskId);
 		String publishPhone = req.getParameter("phone");
-		int publishphone = Integer.parseInt("publishPhone");
 		request request = new request();
-		int un = Integer.parseInt(us);
-		request.setMyPhone(un);
-		request.setPublishPhone(publishphone);
+		request.setMyPhone(us);
+		request.setPublishPhone(publishPhone);
 		request.setTaskId(taskid);
 		Date dt = new Date();
 		java.sql.Date date = new java.sql.Date(dt.getTime());
 		(request).setRequestDate(date);
 		requestService rs = new requestService_imp();
-		
+		rs.requestTask(request);
 	}
 
 }
