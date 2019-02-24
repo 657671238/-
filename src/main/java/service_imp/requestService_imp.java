@@ -1,14 +1,21 @@
 package service_imp;
 import bean.request;
 import dao.requestDao;
+import dao.taskDao;
 import dao_imp.requestDao_imp;
+import dao_imp.taskDao_imp;
 import service.requestService;;
 
 public class requestService_imp implements requestService {
 	public boolean requestTask(request r){
 		requestDao rd = new requestDao_imp();
 		boolean successRequest = rd.addRequest(r);
-		return successRequest;
+		taskDao td = new taskDao_imp();
+		boolean successAddState = td.changeState(r.getTaskId());
+		if(successAddState&&successRequest) {
+			return true;
+		}
+		return false;
 	}
 
 }

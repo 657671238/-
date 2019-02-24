@@ -7,16 +7,20 @@ import dao.requestDao;
 import util.MyDb;
 
 public class requestDao_imp implements requestDao {
-	public boolean addRequest(request r){
-		try {
-			String sql = "insert into requests(task_ID,requestPhone,requestDate) value(?,?,?)";
-			boolean successAddRequest = MyDb.getMyDb().cud(sql, r.getTaskId(),r.getMyPhone(),r.getRequestDate());
-			return successAddRequest;
-		} catch (Exception e) {
-			// TODO: handle exception
+	public boolean addRequest(request r) {
+		if (!this.isAdd(r)) {
+			System.out.print("未请求过");
+			try {
+				String sql = "insert into requests(task_ID,requestPhone,requestDate) value(?,?,?)";
+				boolean successAddRequest = MyDb.getMyDb().cud(sql, r.getTaskId(), r.getMyPhone(), r.getRequestDate());
+				return successAddRequest;
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 		}
-		
+
 		return false;
+
 	}
 
 	public boolean isAdd(request r) {
@@ -34,5 +38,7 @@ public class requestDao_imp implements requestDao {
 		}
 		return false;
 	}
+	
+
 
 }

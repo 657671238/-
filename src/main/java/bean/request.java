@@ -6,11 +6,11 @@ public class request {
 	private String publishPhone;
 	private String myPhone;
 	private int taskId;
-	private Date requestDate;
-	public Date getRequestDate() {
+	private String requestDate;
+	public String getRequestDate() {
 		return requestDate;
 	}
-	public void setRequestDate(Date requestDate) {
+	public void setRequestDate(String requestDate) {
 		this.requestDate = requestDate;
 	}
 	public String getPublishPhone() {

@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletException;
@@ -38,8 +39,8 @@ public class requestTaskServlet extends HttpServlet {
 		request.setPublishPhone(publishPhone);
 		request.setTaskId(taskid);
 		Date dt = new Date();
-		java.sql.Date date = new java.sql.Date(dt.getTime());
-		(request).setRequestDate(date);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		(request).setRequestDate(sdf.format(dt));
 		requestService rs = new requestService_imp();
 		rs.requestTask(request);
 	}
