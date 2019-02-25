@@ -1,6 +1,8 @@
 package dao_imp;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.request;
 import dao.requestDao;
@@ -39,6 +41,39 @@ public class requestDao_imp implements requestDao {
 		return false;
 	}
 	
+	@Override
+	public boolean deleteRequests(int id) {
+		// TODO Auto-generated method stub
+		try {
+			String sql =  "delete from requests where task_Id = ?";
+			boolean successDel = MyDb.getMyDb().cud(sql, id);
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
 
+	@Override
+	public List<request> queryAllRequest(int taskId) {
+		// TODO Auto-generated method stub
+		List<request> list_request = new ArrayList<request>();
+		try {
+			String sql = "select * from requests where task_ID=?";
+			ResultSet rs = MyDb.getMyDb().query(sql, taskId);
+			while(rs.next()) {
+				request r = new request();
+				r.setPublishPhone(rs.getString("requestPhone"));
+				r.setRequestDate(rs.getString("requestDate"));
+				r.setTaskId(taskId);
+				list_request.add(r);
+			}
+			return list_request;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return null;
+	}
 
 }

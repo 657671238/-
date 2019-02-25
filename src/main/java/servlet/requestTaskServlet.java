@@ -42,7 +42,12 @@ public class requestTaskServlet extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		(request).setRequestDate(sdf.format(dt));
 		requestService rs = new requestService_imp();
-		rs.requestTask(request);
+		boolean requestSuccess = rs.requestTask(request);
+		if(requestSuccess) {
+			req.getRequestDispatcher("/selectableTasksServlet").forward(req, resp);
+			return;
+		}
+		req.getRequestDispatcher("/selectableTasksServlet").forward(req, resp);
 	}
 
 }

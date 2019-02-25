@@ -3,8 +3,11 @@ package service_imp;
 import java.util.List;
 
 import bean.task;
+import dao.requestDao;
 import dao.taskDao;
+import dao_imp.requestDao_imp;
 import dao_imp.taskDao_imp;
+import service.requestService;
 import service.taskService;
 
 public class taskService_imp implements taskService {
@@ -40,7 +43,13 @@ public class taskService_imp implements taskService {
 	public boolean deletetask(int id) {
 		// TODO Auto-generated method stub
 		taskDao td = new taskDao_imp();
-		return td.deletetask(id);
+		boolean delTaskSuccess = td.deletetask(id);
+		requestDao rs = new requestDao_imp();
+		boolean delRequest = rs.deleteRequests(id);
+		if(delTaskSuccess&&delRequest) {
+			return true;
+		}
+		return false;
 	}
 
 	public boolean updatetask(task t) {

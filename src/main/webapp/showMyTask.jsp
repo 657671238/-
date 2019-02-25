@@ -28,7 +28,8 @@
 	</style>
 	<script type="text/javascript">
 		function update(){
-			alert("修改键位");
+			alert("查看请求人员");
+			window.location.href="showRequestPersonServlet?taskId="+${task.id};
 		};
 		function deltask(){
 			alert("确认撤销任务");

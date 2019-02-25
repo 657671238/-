@@ -6,7 +6,18 @@
 	height: 1000px;
 	float: left;
 }
+#right_top_login{
+	position: absolute;
+  	top: 10px;
+  	right: 10px;
+  	width: 100px;
+  	height: 100px;
+
+}
+
+
 </style>
+
 
 <div id="left_div">
 	<ul>
@@ -15,4 +26,7 @@
 		<li><a href="publishTasks.jsp">发布任务</a></li>
 		<li><a href="selectedTasksServlet">已选任务</a></li>
 	</ul>
+</div>
+<div id= "right_top_login">
+	<a href="index.jsp">退出登陆</a>
 </div>
