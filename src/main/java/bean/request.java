@@ -7,6 +7,7 @@ public class request {
 	private String myPhone;
 	private int taskId;
 	private String requestDate;
+	private int state;
 	public String getRequestDate() {
 		return requestDate;
 	}
@@ -30,6 +31,12 @@ public class request {
 	}
 	public void setTaskId(int taskId) {
 		this.taskId = taskId;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
 	}
 	
 }

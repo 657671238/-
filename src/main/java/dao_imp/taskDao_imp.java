@@ -3,8 +3,6 @@ package dao_imp;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.interceptors.ServerStatusDiffInterceptor;
-
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 

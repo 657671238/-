@@ -41,7 +41,6 @@ public class requestDao_imp implements requestDao {
 		return false;
 	}
 	
-	@Override
 	public boolean deleteRequests(int id) {
 		// TODO Auto-generated method stub
 		try {
@@ -54,7 +53,6 @@ public class requestDao_imp implements requestDao {
 		return false;
 	}
 
-	@Override
 	public List<request> queryAllRequest(int taskId) {
 		// TODO Auto-generated method stub
 		List<request> list_request = new ArrayList<request>();
@@ -63,6 +61,7 @@ public class requestDao_imp implements requestDao {
 			ResultSet rs = MyDb.getMyDb().query(sql, taskId);
 			while(rs.next()) {
 				request r = new request();
+				r.setState(rs.getInt("state"));
 				r.setPublishPhone(rs.getString("requestPhone"));
 				r.setRequestDate(rs.getString("requestDate"));
 				r.setTaskId(taskId);

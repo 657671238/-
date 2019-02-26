@@ -52,6 +52,7 @@
 							<div>任务编号：${row.taskId}</div>
 							<div>请求人：${row.publishPhone}</div>
 							<div>请求时间：${row.requestDate}</div>
+							<div>请求状态：${row.state}</div>
 						</div></li>
 				</c:forEach>
 			</ul>
