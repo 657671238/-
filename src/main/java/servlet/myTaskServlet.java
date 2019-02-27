@@ -14,8 +14,8 @@ import bean.task;
 import service.taskService;
 import service_imp.taskService_imp;
 
-@WebServlet("/selectedTasksServlet")
-public class selectedTasksServlet extends HttpServlet {
+@WebServlet("/myTaskServlet")
+public class myTaskServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -31,7 +31,7 @@ public class selectedTasksServlet extends HttpServlet {
 			return;
 		}
 		taskService ts = new taskService_imp();
-		List<task> tasklist = ts.queryallselectedtask(us);
+		List<task> tasklist = ts.queryallmytask(us);
 		req.setAttribute("tasklist", tasklist);
 		req.getRequestDispatcher("/selectableTasks.jsp").forward(req, resp);
 		

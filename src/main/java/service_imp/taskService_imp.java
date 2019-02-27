@@ -58,4 +58,16 @@ public class taskService_imp implements taskService {
 		return td.updatetask(t);
 	}
 
+	public List<task> queryallselectedtask(String phone) {
+		// TODO Auto-generated method stub
+		taskDao td = new taskDao_imp();
+		return td.queryallselectedtask(phone);
+	}
+
+	public List<task> queryallmytask(String id) {
+		// TODO Auto-generated method stub
+		taskDao td = new taskDao_imp();
+		return td.queryallmytask(id);
+	}
+
 }

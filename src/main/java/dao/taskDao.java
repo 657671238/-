@@ -20,8 +20,15 @@ public interface taskDao {
 	//查询全部任务
 	public List<task> queryall();
 	
+	//查询全部已请求的任务
+	public List<task> queryallselectedtask(String id);
+	
+	//查询全部发布的任务
+	public List<task> queryallmytask(String id);
+	
 	//查询单个任务的全部信息
 	public task queryone(int id);
 	
+	//更改状态
 	public boolean changeState(int id);
 }

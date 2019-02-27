@@ -141,6 +141,56 @@ public class taskDao_imp implements taskDao {
 		return 0;
 	}
 
+	public List<task> queryallselectedtask(String id) {
+		// TODO Auto-generated method stub
+		List<task> tasklist = new ArrayList<task>();
+		try {
+			String sql = "select * from tasks,requests where tasks.id=requests.task_ID and requests.requestPhone=? order by publishDate desc";
+			ResultSet alltasks = MyDb.getMyDb().query(sql,id);
+			while (alltasks.next()) {
+				task t = new task();
+				t.setId(alltasks.getInt("id"));
+				t.setTaskTitle(alltasks.getString("taskTitle"));
+				t.setTaskBody(alltasks.getString("taskBody"));
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				t.setPublishDate(alltasks.getString("publishDate"));
+				t.setPushPhone(alltasks.getString("pushPhone"));
+				t.setState(alltasks.getString("state"));
+				t.setBounty(alltasks.getInt("bounty"));
+				tasklist.add(t);
+			}
+			return tasklist;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return tasklist;
+	}
+
+	public List<task> queryallmytask(String id) {
+		// TODO Auto-generated method stub
+		List<task> tasklist = new ArrayList<task>();
+		try {
+			String sql = "select * from tasks where pushPhone=? order by publishDate desc";
+			ResultSet alltasks = MyDb.getMyDb().query(sql,id);
+			while (alltasks.next()) {
+				task t = new task();
+				t.setId(alltasks.getInt("id"));
+				t.setTaskTitle(alltasks.getString("taskTitle"));
+				t.setTaskBody(alltasks.getString("taskBody"));
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				t.setPublishDate(alltasks.getString("publishDate"));
+				t.setPushPhone(alltasks.getString("pushPhone"));
+				t.setState(alltasks.getString("state"));
+				t.setBounty(alltasks.getInt("bounty"));
+				tasklist.add(t);
+			}
+			return tasklist;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return tasklist;
+	}
+
 }
 
 

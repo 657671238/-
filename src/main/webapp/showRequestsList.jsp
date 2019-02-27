@@ -29,9 +29,13 @@
 		}
 	</style>
 	<script>
-		function find(id){
-			//alert(id);
+		function find(){
+			alert("find");
 			window.location.href="showTaskServlet?taskId="+id;
+		}
+		function give(){
+			alert("give");
+			//window.location.href="showTaskServlet?taskId="+id;
 		}
 	</script>
 </head>
@@ -54,6 +58,9 @@
 							<div>请求时间：${row.requestDate}</div>
 							<div>请求状态：${row.state}</div>
 						</div></li>
+					<button onclick=find()>详细资料</button>
+					<button onclick=give()>委派任务</button>
+					<button onclick=chat()>打开聊天</button>
 				</c:forEach>
 			</ul>
 		</div>

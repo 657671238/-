@@ -7,6 +7,10 @@ import bean.task;
 public interface taskService {
 	public List<task> queryall();
 	
+	public List<task> queryallselectedtask(String phone);
+ 
+	public List<task> queryallmytask(String id);
+	
 	public boolean addtask(task t); 
 	
 	public boolean isMytask(int taskId,String phoneNumber);

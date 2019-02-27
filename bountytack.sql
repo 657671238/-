@@ -33,7 +33,12 @@ create table `requests`(
 	`requestDate` varchar(20) NOT NULL
 );
 
-
+create table `chatroom`(
+	`roomid` int(10) not NULL AUTO_INCREMENT,
+	`person_1` char(12) not NULL,
+	`person_2` char(12) not NULL,
+	primary key(`roomid`)
+)AUTO_INCREMENT=1;
 
 
 
