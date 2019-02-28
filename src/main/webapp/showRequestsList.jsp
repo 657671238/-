@@ -37,6 +37,9 @@
 			alert("give");
 			//window.location.href="showTaskServlet?taskId="+id;
 		}
+		function chat(id){
+			window.location.href="trytochatroomServlet?phone="+id;
+		}
 	</script>
 </head>
 <body>
@@ -59,8 +62,8 @@
 							<div>请求状态：${row.state}</div>
 						</div></li>
 					<button onclick=find()>详细资料</button>
-					<button onclick=give()>委派任务</button>
-					<button onclick=chat()>打开聊天</button>
+					<button onclick=give()>委派任务</button> 
+					<button onclick=chat(${row.publishPhone})>打开聊天</button>
 				</c:forEach>
 			</ul>
 		</div>

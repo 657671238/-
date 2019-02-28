@@ -34,6 +34,9 @@
 			alert("确认撤销任务");
 			window.location.href="delTaskServlet?taskId="+${task.id};
 		};
+		function chatroom(id){
+			window.location.href="trytochatroomServlet?phone="+id;
+		}
 	</script>
 </head>
 <body>
@@ -53,8 +56,9 @@
 			任务内容：<input type="text" onfocus=this.blur() name="body" value="${task.taskBody}"> <br/>
 			任务赏金：<input type="text" onfocus=this.blur() name="bounty" value="${task.bounty}"> <br/>
             <input type="submit" value="请求此任务" class="btn"  />
+            
 		</form>
-
+			<button onclick=chatroom(${task.pushPhone})>进入聊天室</button>
 		</div>
 	</div>
 	
