@@ -20,14 +20,14 @@ public class registerServlet extends HttpServlet {
 		//获取前台输入的账号密码并进行加密
 		String userName=req.getParameter("userName");
 		String password=req.getParameter("password");
-		System.out.println(userName+password);
+		//System.out.println(userName+password);
 		password=new MD5_String().encryption(password);
-		System.out.println(password);
+		//System.out.println(password);
 		userService us = new userService_imp();
 		
 		boolean success=us.addUser(userName, password);
 		//将添加结果返回到前台
-		System.out.println(success);
+		//System.out.println(success);
 		req.setAttribute("message1", success);
 
 		req.getRequestDispatcher("registerpage.jsp").forward(req, resp);

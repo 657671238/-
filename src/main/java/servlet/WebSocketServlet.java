@@ -15,7 +15,6 @@ import javax.websocket.Session;
 import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-
 import net.sf.json.JSONObject;
 
 @ServerEndpoint("/websocket/{info}")
@@ -41,7 +40,8 @@ public class WebSocketServlet {
 			String user = param.split("[|]")[2];//获得个人phone
 			joinRoom(room,user);
 		}
-		System.out.print(roomList);
+		System.out.println("现在是open");
+		System.out.println(roomList);
 	}
 	
 	
@@ -64,11 +64,28 @@ public class WebSocketServlet {
 		JSONObject object = JSONObject.fromObject(message);
 		if(object.get("flag").toString().equals("exitroom")) {
 			//将用户移除
+			int f2 = 1;
 			String roomid = object.get("roomid").toString();
 			roomList.get(roomid).remove(object.get("nickname").toString());
 			
 			if(roomList.get(roomid).size() == 0) {
+				f2 = 2;
 				roomList.remove(roomid);
+				System.out.println("现在移除了该房间");
+			}
+			if(f2 == 1){		//证明该房间还有其它成员，则通知其它成员更新列表
+				object.put("flag","exitroom");
+				String m = object.get("nickname").toString()+" 退出了房间";
+				object.put("message", m);
+				ConcurrentHashMap<String, WebSocketServlet> r =roomList.get(roomid);
+				List<String> uname = new ArrayList<String>();
+				for(String u:r.keySet()){
+					uname.add(u);
+				}
+				object.put("uname", uname.toArray());
+				for(String i:r.keySet()){  //遍历该房间
+					r.get(i).sendMessage(object.toString());//调用方法 将消息推送
+				}
 			}
 		}
 		else if(object.get("flag").toString().equals("chatroom")){		//聊天室的消息 加入房间/发送消息
@@ -78,6 +95,16 @@ public class WebSocketServlet {
 			String roomid = object.get("target").toString();
 			//获取客户端发送的数据中的内容---用户
 			String username = object.get("nickname").toString();
+			//获取并判断是否存在数据
+
+			if("".equals(object.get("content").toString())){
+				System.out.println("消息为空");
+			}
+			else {
+				System.out.println("消息存在");
+				
+			}
+			
 			//从房间列表中定位到该房间
 			ConcurrentHashMap<String, WebSocketServlet> r =roomList.get(roomid);
 			List<String> uname = new ArrayList<String>();
@@ -96,7 +123,8 @@ public class WebSocketServlet {
 			}
 			r.get(username).rejoin = 0;
 		}
-		System.out.print(roomList);
+		System.out.println("现在是onmessage");
+		System.out.println(roomList);
 	}
 	/**
 	 * 用户断开
@@ -104,7 +132,7 @@ public class WebSocketServlet {
 	 */
 	@OnClose
 	public void onClose(Session session){
-		System.out.print(roomList);
+		System.out.println("mmp 又关闭了");
 	}
 	
 	/**
@@ -113,7 +141,8 @@ public class WebSocketServlet {
 	 */
 	@OnError
 	public void onError(Throwable t){
-		System.out.print(roomList);
+		System.out.println("mmp 错误了");
+
 	}
 	
 	

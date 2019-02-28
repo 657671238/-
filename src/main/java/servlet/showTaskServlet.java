@@ -34,11 +34,11 @@ public class showTaskServlet extends HttpServlet {
 		}
 		String taskId = req.getParameter("taskId");
 		int task_Id = Integer.parseInt(taskId);
-		System.out.printf(taskId);
+		//System.out.printf(taskId);
 		taskService ts = new taskService_imp();
 		boolean ismyTask = ts.isMytask(task_Id, us);
 		//此处分开判断是为了在我的任务栏目中避免判断逻辑
-		System.out.println(ismyTask);
+		//System.out.println(ismyTask);
 		if(ismyTask) {
 			req.getRequestDispatcher("showMyTaskServlet").forward(req, resp);
 			return;

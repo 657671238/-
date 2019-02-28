@@ -19,16 +19,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <script type="text/javascript">
 $(function(){
-	     if (window.WebSocket) {
-		    alert( "您的浏览器支持多个websocket通信的实例");
-		     } 
-		    else {
-		    	 alert( "您的浏览器不支持websocket通信的实例");
-		  }
+
 
 	var roomid=$(".roomid").html();//房间名
 	var nickname = $(".uname").html();//自己的昵称
 	console.log(roomid);
+	console.log(nickname);
 	var flag = "join";
 	var info = flag + "|" +roomid + "|" +nickname;
 	//建立一条与服务器之间的连接
@@ -133,7 +129,7 @@ $(function(){
 	
 	$(".exitroom").click(function(){			//退出房间
 		socket.send(exitroom); //向服务器发送退出房间的信号
-		location.href="myMessageServlet"; //跳转到前一个页面
+		window.history.go(-1); //跳转到前一个页面
 	})
 	
 	function refreshMember(data){
