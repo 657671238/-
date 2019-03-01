@@ -58,7 +58,7 @@
             <input type="submit" value="请求此任务" class="btn"  />
             
 		</form>
-			<button onclick=chatroom(${task.pushPhone})>进入聊天室</button>
+			<button onclick=chatroom(${task.pushPhone})>打开聊天</button>
 		</div>
 	</div>
 	

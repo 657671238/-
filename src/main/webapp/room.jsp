@@ -23,6 +23,44 @@ $(function(){
 
 	var roomid=$(".roomid").html();//房间名
 	var nickname = $(".uname").html();//自己的昵称
+	$.ajax({
+		type:"GET",
+		url:"getMessageJSONServlet",
+		data: {roomid:$(".roomid").html()},
+		dataType:"json",
+		success:function(msg){
+			//console.log(data);
+			var align;
+			for(var i=0;i<msg.length;i++){
+					if(msg[i].phone==nickname){
+						align = "right";
+					}else{
+						align = "left";
+					}
+					$(".center-info").append(
+							"<div class='basicInfo' style=float:"+align+">"+
+							"<div class='basicInfo-left' style=float:"+align+">"+
+								"<img src='img/touxiang.jpg'>"+
+							"</div>"+
+							"<div class='basicInfo-right' style=float:"+align+">"+
+								"<div class='username' style=text-align:"+align+">"+
+									"<span>"+msg[i].phone+"</span>&nbsp;"+
+									"<span>"+msg[i].date+"</span>"+
+								"</div>"+
+								"<div class='context'>"+
+									"<span>"+
+										msg[i].text+
+									"</span>"+
+								"</div>"+
+							"</div>"+
+						"</div>"
+					); 
+				}
+		},
+		error:function(xhr,status,error){
+			console.log(error);
+		}
+	})	
 	console.log(roomid);
 	console.log(nickname);
 	var flag = "join";
@@ -155,7 +193,7 @@ $(function(){
 				<--退出房间
 			</div>
 			<div class="roomname">
-				欢迎来到：<h1 style="display: inline-block;" class="roomid">${param.roomid }</h1>
+				欢迎来到房间：<h1 style="display: inline-block;" class="roomid">${param.roomid }</h1>
 			</div>
 			<div class="member">
 				<c:forEach items="${requestScope.memberlist }" var="member">

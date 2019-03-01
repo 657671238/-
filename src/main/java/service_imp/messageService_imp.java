@@ -2,6 +2,7 @@ package service_imp;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import bean.message;
 import dao.messageDao;
@@ -16,6 +17,12 @@ public class messageService_imp implements messageService {
 		m.setDate(s.format(new Date()));
 		messageDao md = new messageDao_imp();
 		return md.addmessage(m);
+	}
+
+	public List<message> selectAllMessage(int roomid) {
+		// TODO Auto-generated method stub
+		messageDao md = new messageDao_imp();
+		return md.selectAllMessage(roomid);
 	}
 
 }
