@@ -16,6 +16,8 @@ import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import net.sf.json.JSONObject;
+import service.messageService;
+import service_imp.messageService_imp;
 
 @ServerEndpoint("/websocket/{info}")
 public class WebSocketServlet {
@@ -102,7 +104,19 @@ public class WebSocketServlet {
 			}
 			else {
 				System.out.println("消息存在");
-				
+				bean.message m = new bean.message();
+				m.setPhone(username);
+				int roomid1 = Integer.parseInt(roomid);
+				m.setRoomid(roomid1);
+				m.setText(object.get("content").toString());
+				messageService ms = new messageService_imp();
+				boolean successAdd = ms.addmessage(m);
+				if(successAdd) {
+					System.out.println("消息添加成功");
+				}
+				else {
+					System.out.println("消息添加失败");
+				}
 			}
 			
 			//从房间列表中定位到该房间

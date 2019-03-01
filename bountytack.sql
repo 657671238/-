@@ -40,10 +40,11 @@ create table `chatroom`(
 	primary key(`roomid`)
 )AUTO_INCREMENT=1;
 
-
-
-
-
+create table messages(
+	phone varchar(15) not NULL,
+	roomid int(30) not NULL,
+	text VARCHAR(50)not NULL 
+);
 
 
 
