@@ -32,14 +32,14 @@ public class WebSocketServlet {
 	@OnOpen
 	public void onOpen(@PathParam(value="info")String param ,Session session) {
 		this.session = session;
-		String flag = param.split("[|]")[0];
-		String room = param.split("[|]")[1];//获得roomid
+		String flag = param.split("[_]")[0];
+		String room = param.split("[_]")[1];//获得roomid
 		//动态创建房间
 		if(roomList.get(room)==null) {
 			roomList.put(room, new ConcurrentHashMap<String, WebSocketServlet>());		
 		}
 		if(flag.equals("join")) {
-			String user = param.split("[|]")[2];//获得个人phone
+			String user = param.split("[_]")[2];//获得个人phone
 			joinRoom(room,user);
 		}
 		System.out.println("现在是open");

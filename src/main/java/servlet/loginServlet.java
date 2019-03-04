@@ -35,12 +35,12 @@ public class loginServlet extends HttpServlet {
 		if(isexist) {
 			HttpSession session=req.getSession();
 			session.setAttribute("username", un);
-			resp.sendRedirect("myMessageServlet");
+			req.setAttribute("message", "true");
 		}
 		else {
-			req.setAttribute("message", "账号或密码错误");
-			req.getRequestDispatcher("/index.jsp").forward(req,resp);
+			req.setAttribute("message", "false");
 		}
+		req.getRequestDispatcher("/index.jsp").forward(req,resp);
 	}
 
 }

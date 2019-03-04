@@ -29,7 +29,7 @@
 		}
 	</style>
 	<script>
-		function find(){
+		function find(id){
 			alert("find");
 			window.location.href="showTaskServlet?taskId="+id;
 		}
@@ -61,7 +61,7 @@
 							<div>请求时间：${row.requestDate}</div>
 							<div>请求状态：${row.state}</div>
 						</div></li>
-					<button onclick=find()>详细资料</button>
+					<button onclick=find(${row.publishPhone})>详细资料</button>
 					<button onclick=give()>委派任务</button> 
 					<button onclick=chat(${row.publishPhone})>打开聊天</button>
 				</c:forEach>

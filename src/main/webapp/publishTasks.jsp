@@ -28,9 +28,6 @@
 	</style>
 </head>
 <body>
-	<div id="header">
-	
-	</div>
 	<div id="mainer">
    		<%@ include file="mainpage.jsp" %>
 		<div class="iframe_right" >

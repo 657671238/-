@@ -65,7 +65,7 @@ $(function(){
 	console.log(roomid);
 	console.log(nickname);
 	var flag = "join";
-	var info = flag + "|" +roomid + "|" +nickname;
+	var info = flag + "_" +roomid + "_" +nickname;
 	//建立一条与服务器之间的连接
 	var socket = new WebSocket("ws://localhost:8080/highSchool_Bountytask/websocket/"+info);
 	var text = "";

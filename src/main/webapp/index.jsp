@@ -36,7 +36,7 @@
 			<div class="form-group">
 				<label for="lastname" class="col-sm-2 control-label">密码</label>
 				<div class="col-sm-10">
-					<input type="password" class="form-control" id="firstname"
+					<input type="password" class="form-control" id="lastname"
 							placeholder="请输入密码" name="password">
 				</div>
 			</div>
@@ -44,7 +44,7 @@
     			<div class="col-sm-offset-2 col-sm-10">
     				  <div class="checkbox">
         				<label>
-       			 			  <input type="checkbox">请记住我
+       			 			  <input type="checkbox">记住密码
       					  </label>
       					  <a class="register" href="registerpage.jsp"> 注册账号</a>
     					  </div>
@@ -57,5 +57,16 @@
 			</div>
 		</form>
 	</div>
+	<script type="text/javascript">
+		$(function(){	
+			var message = "<%=request.getAttribute("message")%>";
+			console.log(message);
+			if(message=="true"){
+				window.location.href="myMessageServlet";
+			}else if(message=="false"){
+				alert("账号密码输入错误");
+			}
+		});
+	</script>
 </body>
 </html>

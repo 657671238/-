@@ -70,7 +70,7 @@
 </head>
 <body>
 	<div class="container">
-		<h3 class="text-center welcome">欢迎来到赏金任务系统</h3>
+		<h3 class="text-center welcome">注册新账号</h3>
 		<form action="registerServlet" method="post"  class="form-horizontal loginform" role="form" id="loadForm">
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">用户名</label>
