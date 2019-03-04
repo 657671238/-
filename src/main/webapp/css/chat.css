@@ -16,7 +16,7 @@ body{
 	float: right;	
 }
 .body-left,.body-right{
-	background-color: #101010;
+	background-color: #fcfcfc;
 	display:inline-block;
 	width:25%;
 	height: 100%;
@@ -130,7 +130,12 @@ body{
 }
 .exitroom{
 	margin-top: 12px;
+	color: black;
 }
 .exitroom:HOVER {
 	color:red;
+}
+
+.roomname{
+		color: black;
 }

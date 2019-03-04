@@ -56,6 +56,7 @@ $(function(){
 						"</div>"
 					); 
 				}
+			    $(".center-info").scrollTop(999999); //让滚动条始终保持在最下 
 		},
 		error:function(xhr,status,error){
 			console.log(error);

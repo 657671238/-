@@ -22,7 +22,6 @@ public class updateServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		this.doPost(req, resp);
 	}
-
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
