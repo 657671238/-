@@ -8,9 +8,9 @@
 }
 #right_top_login{
 	position: absolute;
-  	top: 10px;
-  	right: 10px;
-  	width: 100px;
+  	top: 18px;
+  	right: 0px;
+  	width: 85px;
   	height: 100px;
 
 }

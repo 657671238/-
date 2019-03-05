@@ -44,7 +44,7 @@
     			<div class="col-sm-offset-2 col-sm-10">
     				  <div class="checkbox">
         				<label>
-       			 			  <input type="checkbox">记住密码
+       			 			  <input type="checkbox" id="checkpassword" value="1" name="checkbox">记住密码
       					  </label>
       					  <a class="register" href="registerpage.jsp"> 注册账号</a>
     					  </div>
@@ -60,11 +60,28 @@
 	<script type="text/javascript">
 		$(function(){	
 			var message = "<%=request.getAttribute("message")%>";
-			console.log(message);
-			if(message=="true"){
+			var ischeck = "<%=request.getAttribute("ischeck")%>";
+		    var user = document.getElementsByTagName("input")[0];
+            var pass = document.getElementsByTagName("input")[1];
+            var check = document.getElementsByTagName("input")[2];
+            var loUser = localStorage.user || "";
+            var loPass = localStorage.pass || "";
+     	    user.value = loUser;
+     	    pass.value = loPass;
+        	if(loUser !== "" && loPass !== ""){
+        		localStorage.user = "";
+        		localStorage.pass = "";
+        		check.setAttribute("checked","");
+            }
+			if(message =="true"){
+				if(ischeck =="true"){
+					localStorage.user ="<%=request.getAttribute("username")%>";
+					localStorage.pass ="<%=request.getAttribute("pwd")%>";
+				}
 				window.location.href="myMessageServlet";
 			}else if(message=="false"){
 				alert("账号密码输入错误");
+				window.location.href="index.jsp";
 			}
 		});
 	</script>

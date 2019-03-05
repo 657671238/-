@@ -8,32 +8,24 @@
 <head>
 	<title></title>
 	<style type="text/css">
-		body{
-			width: 100%;
-			height: 100%;
+		.container_me {
+			width:600px;
+			padding-right: 15px;
+ 		    padding-left: 15px;
+  			margin-right: auto;
+  			margin-left: auto;
+  			margin-top: 50px;
 		}
-		#header{
-			
-		}
-		#mainer{
-			width: 100%;
-			height: 650px;
-		}
-		.iframe_right{
-			/*float: left;*/
-			background: #fcfcfc;
-			width: 88%;
-			height: 100%;
+		.welcome{
+			margin-bottom:30px;
 		}
 	</style>
 </head>
 <body>
-	<div id="mainer">
-   		<%@ include file="mainpage.jsp" %>
-		<div class="iframe_right" >
-					<br>
+   	<%@ include file="mainpage.jsp" %>
+   	
+<%-- 		<div class="iframe_right" >
 			<center class="bt">发布任务</center>
-			<br>
 		 <form method="post" action="addTaskServlet" class="form">
 			任务标题：<input type="text" name="taskTitle" > <br/>
 			任务内容：<input type="text" name="taskBody" > <br/>
@@ -42,9 +34,45 @@
 			<input type="submit" value="确认发布" class="btn"/>
 			</form>
 		</div>
-	</div>
-
+	</div> --%>
 	
-	<div id="footer"></div>
+	<div class="container_me">
+		<h3 class="text-center welcome">发布任务</h3>
+		<form action="addTaskServlet" method="post" class="form-horizontal loginform" role="form">
+			<div class="form-group">
+				<label for="taskTitle" class="col-sm-2 control-label">任务标题</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="taskTitle"
+							 name="taskTitle" placeholder="请输入任务标题">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="taskBody" class="col-sm-2 control-label">任务内容</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="taskBody"
+							name="taskBody" placeholder="请输入任务内容">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="bounty" class="col-sm-2 control-label">任务赏金</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="bounty"
+							name="bounty" placeholder="请输入赏金数">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="place" class="col-sm-2 control-label">任务地点</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="place"
+							name="place" placeholder="请输入任务地点">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">确认发布</button>
+				</div>
+			</div>
+		</form>
+	</div>
 </body>
 </html>

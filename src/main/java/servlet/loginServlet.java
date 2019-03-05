@@ -27,15 +27,24 @@ public class loginServlet extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String[] args=req.getParameterValues("checkbox");
 		String un=req.getParameter("userName");
-		String pwd=req.getParameter("password");
-		pwd = new MD5_String().encryption(pwd);
+		String pwd1=req.getParameter("password");
+		String pwd = new MD5_String().encryption(pwd1);
 		userService us = new userService_imp();
 		boolean isexist=us.isexist(un,pwd);
 		if(isexist) {
 			HttpSession session=req.getSession();
 			session.setAttribute("username", un);
 			req.setAttribute("message", "true");
+			if(args==null||args.length==0){
+				req.setAttribute("ischeck", "false");
+			}
+			else{
+				req.setAttribute("ischeck", "true");
+				req.setAttribute("username", un);
+				req.setAttribute("pwd", pwd1);
+			}
 		}
 		else {
 			req.setAttribute("message", "false");
