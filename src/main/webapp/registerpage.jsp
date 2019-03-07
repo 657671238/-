@@ -108,30 +108,6 @@
 					 <a class="index" href="index.jsp">返回登陆</a>
 				</div>
 			</div>
-<!-- 			<div class="innerBody">
-				<div class="tableItem">
-					<i class="userHead"></i>
-					<input type="text" id="userName" name="userName" placeholder="手机号" 
-					 onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
-					<b class="setButton" onclick=smsService()>获取验证码</b>    		
-				</div>
-
-				<div class="tableItem">
-					<i class="userLock"></i>
-					<input type="text" id="identify" name="identify" placeholder="请输入验证码">    		
-				</div>
-				<div class="tableItem">
-					<i class="userLock"></i>
-					<input id="password" type="text" name="password" placeholder="请输入密码">    		
-				</div>
-				<div class="tableItem">
-					<i class="userLock"></i>
-					<input id="password0" type="text" name="password0" placeholder="确认密码">    		
-				</div>
-				<div class="registerButton">
-					<input type="button" value="确认注册" onclick=check()>	
-				</div>
-			</div> -->
 		</form>
 
 	</div>

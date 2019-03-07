@@ -12,9 +12,6 @@
 			width: 100%;
 			height: 100%;
 		}
-		#header{
-			
-		}
 		#mainer{
 			width: 100%;
 			height: 1000px;
@@ -40,10 +37,6 @@
 	</script>
 </head>
 <body>
-	<div id="header">
-	
-	</div>
-	<div id="mainer">
    		<%@ include file="mainpage.jsp" %>
 		<div class="iframe_right" >
 		    	 <br/><h3 class="text-center"><strong>查看此任务</strong></h3>
@@ -60,8 +53,5 @@
 		</form>
 			<button onclick=chatroom(${task.pushPhone})>打开聊天</button>
 		</div>
-	</div>
-	
-	<div id="footer"></div>
 </body>
 </html>

@@ -11,22 +11,16 @@
 <head>
 	<title></title>
 	<style type="text/css">
-		body{
-			width: 100%;
-			height: 100%;
-		}
-		#header{
-			
-		}
-		#mainer{
-			width: 100%;
-			height: 100%;
-		}
 		.iframe_right{
 			/*float: left;*/
 			background: #fcfcfc;
-			width: 88%;
+			width: 100%;
 			height: 100%;
+		}
+		.ulgroup{
+			width:500px;
+  			margin-right: auto;
+  			margin-left: auto;			
 		}
 	</style>
 	<script>
@@ -37,33 +31,26 @@
 	</script>
 </head>
 <body>
-	<div id="header">
-	
-	</div>
-	<div id="mainer">
    		<%@ include file="mainpage.jsp" %>
 		<div class="iframe_right" >
 			<br>
-			<center class="bt">任务列表</center>
-			<ul>
+			<h3 class="text-center">任务列表</h3>
+			<ul class="list-group ulgroup">
 				<!-- 新闻列表 ，静态HTML代码与动态代码混合编程-->
 				<c:forEach items="${tasklist}" var="row">
-					<li id=${row.id} onclick="find(this.id)">
+					<li id=${row.id} onclick="find(this.id)" class="list-group-item">
 						<div>
-							<div>标题：${row.taskTitle}</div>
-							<div>内容：${row.taskBody}</div>
-							<div>发布者：${row.pushPhone}</div>
-							<div>发布日期：${row.publishDate}</div>
-							<div>任务状态：${row.state}</div>
-							<div>任务赏金：${row.bounty}</div>
+							<div >标题：${row.taskTitle}</div>
+							<div > 内容：${row.taskBody}</div>
+							<div >发布者：${row.pushPhone}</div>
+							<div >发布日期：${row.publishDate}</div>
+							<div >任务状态：${row.state}</div>
+							<div >任务赏金：${row.bounty}</div>
 							<div style="display:none" value=${row.id}>${row.id}</div>
 						</div></li>
 				</c:forEach>
 			</ul>
 		</div>
-	</div>
 
-	
-	<div id="footer"></div>
 </body>
 </html>

@@ -8,6 +8,7 @@ public class User {
 	private String name;
 	private String school;
 	private Date birth;
+	private String image;
 	
 	public String getPhoneNumber() {
 		return phoneNumber;
@@ -51,5 +52,11 @@ public class User {
 		return "User [phoneNumber=" + phoneNumber + ", password=" + pwd
 				+ ", name=" + name + ", school =" + school
 				+ ", birth" + birth + "]";
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 }

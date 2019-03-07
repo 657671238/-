@@ -49,8 +49,8 @@ public class userDao_imp implements userDao{
 	public boolean updateUser(User us) {
 		// TODO Auto-generated method stub
 		try {
-			String sql = "update users set name=? ,school=? ,birth=? where phoneNumber=?";
-			boolean updateSuccess = MyDb.getMyDb().cud(sql, us.getName(),us.getSchool(),us.getBirth(),us.getPhoneNumber());
+			String sql = "update users set name=? ,school=? ,birth=?,image=? where phoneNumber=?";
+			boolean updateSuccess = MyDb.getMyDb().cud(sql, us.getName(),us.getSchool(),us.getBirth(),us.getImage(),us.getPhoneNumber());
 			return updateSuccess;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -69,6 +69,7 @@ public class userDao_imp implements userDao{
 				us.setName(rs.getString("name"));
 				us.setSchool(rs.getString("school"));
 				us.setBirth(rs.getDate("birth"));
+				us.setImage(rs.getString("image"));
 			}
 			return us;
 			

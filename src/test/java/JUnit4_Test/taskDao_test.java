@@ -23,7 +23,7 @@ public class taskDao_test {
 		t.setPublishDate("");
 		boolean addtaskSuccess = new taskDao_imp().addtask(t);
 		System.out.println(addtaskSuccess);
-	}
+	}	
 
 	@Test
 	public void testUpdatetask() {

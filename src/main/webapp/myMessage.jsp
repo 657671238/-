@@ -27,7 +27,7 @@
 
 	<div class="container_me">
 		<h3 class="text-center welcome">会员信息中心</h3>
-		<form action="updateServlet" method="post" class="form-horizontal loginform" role="form">
+		<form action="updateServlet" method="post" class="form-horizontal loginform" role="form" enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="firstname" class="col-sm-2 control-label">会员账号</label>
 				<div class="col-sm-10">
@@ -57,12 +57,51 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label for="pro_image" class="col-sm-2 control-label">我的头像</label>
+				<div class="col-sm-10">	
+						<img id="pro_image" style="width:180px" alt="暂无图片"/>
+						<input type="hidden" id="original_image" name="image" value="${user.image}">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="pro_image" class="col-sm-2 control-label">上传图片:</label>
+				<div class="col-sm-10">
+						<input type="file" accept=".jpg,.png,.jpeg,.gif" name="upload" id="uploadFile" onchange="loadImage()"/>
+				</div>
+			</div>
+			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">确认修改</button>
+					<button type="submit" class="btn btn-info" >确认修改</button>
 				</div>
 			</div>
 		</form>
 	</div>
-
+	<script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+			//当file控件  选中一张图片的时候  就会触发这个方法  这个方法可以将上面的图片换掉
+			$(function(){
+				 $("#pro_image").attr('src',"/file/"+"${user.image}");
+			})
+			var oldImage = null;
+			function loadImage(){
+				//get(0) 是将JQuery对象  转换为DOM对象
+				//document.getElementById("uploadFile");
+				var upload = $("#uploadFile").get(0);
+				console.dir(upload);
+				//表示至少选中了一张图片信息
+				if(upload.files.length>0){
+					var file = upload.files[0];
+					var read = new FileReader();
+					read.readAsDataURL(file);
+					read.onloadend = function(){
+						$("#pro_image").attr("src",read.result);	
+					}
+				}else{
+					console.log("用户没有选中图片")
+					$("#pro_image").attr("src",oldImage);
+				}
+			}
+			
+	</script>
 </body>
 </html>

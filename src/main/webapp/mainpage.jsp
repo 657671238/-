@@ -55,6 +55,7 @@
                     <li><a href="selectedTasksServlet">已选任务</a></li>
                 </ul>
             </li>
+            <li><a href="#">消息列表</a></li>
         </ul>
     </div>
     </div>

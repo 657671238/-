@@ -12,9 +12,6 @@
 			width: 100%;
 			height: 100%;
 		}
-		#header{
-			
-		}
 		#mainer{
 			width: 100%;
 			height: 1000px;
@@ -38,9 +35,6 @@
 	</script>
 </head>
 <body>
-	<div id="header">
-	
-	</div>
 	<div id="mainer">
    		<%@ include file="mainpage.jsp" %>
 		<div class="iframe_right" >
@@ -58,7 +52,5 @@
 		<button  value="撤销任务" class="btn" onclick=deltask()>撤销任务</button>
 		</div>
 	</div>
-	
-	<div id="footer"></div>
 </body>
 </html>

@@ -69,14 +69,18 @@
      	    user.value = loUser;
      	    pass.value = loPass;
         	if(loUser !== "" && loPass !== ""){
-        		localStorage.user = "";
-        		localStorage.pass = "";
+/*         		localStorage.user = "";
+        		localStorage.pass = ""; */
         		check.setAttribute("checked","");
             }
 			if(message =="true"){
 				if(ischeck =="true"){
 					localStorage.user ="<%=request.getAttribute("username")%>";
 					localStorage.pass ="<%=request.getAttribute("pwd")%>";
+				}
+				else{
+					localStorage.user ="";
+					localStorage.pass ="";
 				}
 				window.location.href="myMessageServlet";
 			}else if(message=="false"){
