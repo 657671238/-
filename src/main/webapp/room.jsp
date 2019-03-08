@@ -31,16 +31,19 @@ $(function(){
 		success:function(msg){
 			//console.log(data);
 			var align;
+			var image;
 			for(var i=0;i<msg.length;i++){
 					if(msg[i].phone==nickname){
 						align = "right";
+						image = "/file/"+"${us_img}"
 					}else{
 						align = "left";
+						image = "/file/"+"${him_img}"
 					}
 					$(".center-info").append(
 							"<div class='basicInfo' style=float:"+align+">"+
 							"<div class='basicInfo-left' style=float:"+align+">"+
-								"<img src='img/touxiang.jpg'>"+
+								"<img src='"+image+"'>"+
 							"</div>"+
 							"<div class='basicInfo-right' style=float:"+align+">"+
 								"<div class='username' style=text-align:"+align+">"+
@@ -134,15 +137,18 @@ $(function(){
 		} 
 		if(!msg.content==""){			//内容不为空时 
 			var align;
+			var image;
 			if(msg.isSelf){
 				align = "right";
+				image = "/file/"+"${us_img}";
 			}else{
 				align = "left";
+				image = "/file/"+"${him_img}"
 			}
 			$(".center-info").append(
 					"<div class='basicInfo' style=float:"+align+">"+
 					"<div class='basicInfo-left' style=float:"+align+">"+
-						"<img src='img/touxiang.jpg'>"+
+					"<img src='"+image+"'>"+
 					"</div>"+
 					"<div class='basicInfo-right' style=float:"+align+">"+
 						"<div class='username' style=text-align:"+align+">"+
@@ -172,12 +178,13 @@ $(function(){
 	})
 	
 	function refreshMember(data){
+		var image = "/file/"+"${him_img}";
 		$(".member").html("");
 		for(var i=0;i<data.length;i++){
 			$(".member").append(
 				"<div class='memberInfo'>"+
 					"<div class='userpic'>"+
-						"<img src='img/touxiang.jpg'>"+
+					"<img src='"+image+"'>"+
 					"</div>"+
 					"<span class='username'>"+data[i]+"</span>"+
 				"</div>"

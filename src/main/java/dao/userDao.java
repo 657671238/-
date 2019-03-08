@@ -17,5 +17,4 @@ public interface userDao {
 	
 	public User queryone(String phoneNumber);
 	// TODO 根据主键查询用户信息
-
 }

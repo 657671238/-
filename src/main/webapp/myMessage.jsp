@@ -59,7 +59,7 @@
 			<div class="form-group">
 				<label for="pro_image" class="col-sm-2 control-label">我的头像</label>
 				<div class="col-sm-10">	
-						<img id="pro_image" style="width:180px" alt="暂无图片"/>
+						<img id="pro_image" style="width:100px;height:100px;" alt="暂无图片"/>
 						<input type="hidden" id="original_image" name="image" value="${user.image}">
 				</div>
 			</div>

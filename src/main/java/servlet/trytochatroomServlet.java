@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.filters.CsrfPreventionFilter;
+
 import bean.chatroom;
 import bean.request;
 import bean.task;
@@ -41,6 +43,11 @@ public class trytochatroomServlet extends HttpServlet {
 		chatroomService cs = new chatroomService_imp();
 		int roomid = cs.addchatroom(c); 
 		String roomid1 = roomid+"";
+		//发送头像地址
+		String us_pic = cs.getPic(us);
+		String him_pic = cs.getPic(chatperson);
+		req.setAttribute("us_img", us_pic);
+		req.setAttribute("him_img", him_pic);
 		if(roomid>-1) {
 			req.getRequestDispatcher("/room.jsp?roomid="+roomid1+"&uname="+us).forward(req, resp);
 		}
