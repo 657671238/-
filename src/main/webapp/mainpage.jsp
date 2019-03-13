@@ -1,4 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="./css/bootstrap.min.css">  
 <style type="text/css">
 #left_div {
 	background: #fcfcfc;
@@ -14,19 +15,13 @@
   	height: 100px;
 
 }
+.dropdown-menu>li>a{
+	padding:8px 20px;
+}
 </style>
-<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- <div id="left_div">
-	<ul>
-		<li><a href="myMessageServlet">我的信息</a></li>
-		<li><a href="selectableTasksServlet">可选任务</a></li>
-		<li><a href="myTaskServlet">我的任务</a></li>
-		<li><a href="selectedTasksServlet">已选任务</a></li>
-		<li><a href="publishTasks.jsp">发布任务</a></li>
-	</ul>
-</div> -->
+<script src="./js/bootstrap.min.js"></script>
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid"> 
     <div class="navbar-header">
@@ -47,12 +42,10 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     查看任务 <b class="caret"></b>
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a href="selectableTasksServlet">全部任务</a></li>
-                    <li class="divider"></li>
-                    <li><a href="myTaskServlet">我的任务</a></li>
-                    <li class="divider"></li>
-                    <li><a href="selectedTasksServlet">已选任务</a></li>
+                <ul class="dropdown-menu drop_1">
+                    <li><a href="selectableTasksServlet"  class="li_11">全部任务</a></li>
+                    <li><a href="myTaskServlet" class="li_11">我的任务</a></li>
+                    <li><a href="selectedTasksServlet"  class="li_11">已选任务</a></li>
                 </ul>
             </li>
             <li><a href="#">消息列表</a></li>

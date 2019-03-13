@@ -12,6 +12,7 @@ public class task {
 	private String state;//任务状态
 	private int bounty;//赏金数量
 	private String place;//任务地点
+	private String time_desc;//任务时间描述
 	public int getId() {
 		return id;
 	}
@@ -63,5 +64,11 @@ public class task {
 	}
 	public void setPlace(String place) {
 		this.place = place;
+	}
+	public String getTime_desc() {
+		return time_desc;
+	}
+	public void setTime_desc(String time_desc) {
+		this.time_desc = time_desc;
 	}
 }
