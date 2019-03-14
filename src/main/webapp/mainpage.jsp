@@ -20,8 +20,10 @@
 }
 </style>
 
-<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="./js/jquery-3.2.1.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
+<script type="text/javascript">
+</script>
 <nav class="navbar navbar-default" role="navigation">
     <div class="container-fluid"> 
     <div class="navbar-header">
@@ -36,9 +38,9 @@
     </div>
     <div class="collapse navbar-collapse" id="example-navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="myMessageServlet">会员信息</a></li>
-            <li><a href="publishTasks.jsp">发布任务</a></li>
-            <li class="dropdown">
+            <li class="li_1"><a href="myMessageServlet">会员信息</a></li>
+            <li class="li_2"><a href="publishTasks.jsp">发布任务</a></li>
+            <li class="li_3 dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     查看任务 <b class="caret"></b>
                 </a>

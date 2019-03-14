@@ -1,0 +1,98 @@
+<html>
+<head>
+<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html {width: 100%;height: 100%;margin:0;font-family:"微软雅黑";font-family:"微软雅黑";}
+		#allmap{display:none;width:100%;height:500px;}
+		p{margin-left:5px; font-size:14px;}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=IOq4Z8Vm45rpk0rdkind47dOHR7zAwAf"></script>
+	<title>地图单击事件</title>
+</head>
+<body>
+	<div id="allmap"></div>
+	<p>添加点击地图监听事件，点击地图后显示当前经纬度</p>
+</body>
+</html>
+<script src="../../main/webapp/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+
+
+	// 百度地图API功能，初始化地图信息
+	var marker;
+	var map = new BMap.Map("allmap");
+	map.centerAndZoom("武汉", 12);
+	$("#allmap").show();
+	function showInfo(e){
+		alert(e.point.lng + ", " + e.point.lat);
+		map.centerAndZoom(new BMap.Point(e.point.lng, e.point.lat), 14);
+		map.removeOverlay(marker);
+		marker = new BMap.Marker(new BMap.Point(e.point.lng,  e.point.lat)); // 创建点
+		map.addOverlay(marker); 
+		getpointName(e.point.lng,e.point.lat);
+	}
+	
+	//地图点击调用
+	map.addEventListener("click", showInfo);
+
+	//设置鼠标滚动事件
+	map.enableScrollWheelZoom(true);
+	
+	//实现通过经纬度坐标获取地址描述
+ 	function  getpointName(lng,lat){
+ 		console.log(lng+","+lat);
+		$.ajax({
+			
+					type : "GET",
+					//添加参数进行分页  查询
+					url : "http://api.map.baidu.com/geocoder/v2/",
+					data : {
+						location : lat+","+lng,
+						latest_admin:1,
+						output:"json",
+						ak: "IOq4Z8Vm45rpk0rdkind47dOHR7zAwAf"
+					},
+					dataType : "jsonp",
+					success:function(data){
+						console.log(data);
+					},
+					error : function(xhr, error, status) {
+						console.log(error);
+						//alert(error);
+						//mylayer.showError(data.data);
+					}
+		})
+		
+	} 
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

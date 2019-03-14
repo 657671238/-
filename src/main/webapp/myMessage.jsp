@@ -190,6 +190,9 @@
 	<script src="js/jquery.js" type="text/javascript"></script>
   	<script src="js/school.js" type="text/javascript"></script>
 	<script type="text/javascript">
+			//添加导航栏选中事件
+			$("li.active").removeClass("active");
+			$(".li_1").addClass("active");
 			//当file控件  选中一张图片的时候  就会触发这个方法  这个方法可以将上面的图片换掉
 			$(function(){
 				 $("#pro_image").attr('src',"/file/"+"${user.image}");

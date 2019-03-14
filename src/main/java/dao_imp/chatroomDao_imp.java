@@ -9,6 +9,7 @@ import util.MyDb;
 public class chatroomDao_imp implements chatroomDao {
 
 	public boolean addchatroom(chatroom c) {
+		//System.out.println("调用添加room");
 		// TODO Auto-generated method stub
 		try {
 			String sql = "insert into chatroom(person_1,person_2) value(?,?)";

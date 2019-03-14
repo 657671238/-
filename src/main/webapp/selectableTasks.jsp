@@ -23,12 +23,7 @@
   			margin-left: auto;			
 		}
 	</style>
-	<script>
-		function find(id){
-			//alert(id);
-			window.location.href="showTaskServlet?taskId="+id;
-		}
-	</script>
+
 </head>
 <body>
    		<%@ include file="mainpage.jsp" %>
@@ -39,6 +34,7 @@
 				<!-- 新闻列表 ，静态HTML代码与动态代码混合编程-->
 				<c:forEach items="${tasklist}" var="row">
 					<li id=${row.id} onclick="find(this.id)" class="list-group-item">
+					<span class="badge">状态</span>
 						<div>
 							<div >标题：${row.taskTitle}</div>
 							<div > 内容：${row.taskBody}</div>
@@ -53,4 +49,13 @@
 		</div>
 
 </body>
+	<script type="text/javascript">
+			//添加导航栏选中事件
+			$("li.active").removeClass("active");
+			$(".li_3").addClass("active");
+		function find(id){
+			//alert(id);
+			window.location.href="showTaskServlet?taskId="+id;
+		}
+	</script>
 </html>

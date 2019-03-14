@@ -48,7 +48,9 @@ public class trytochatroomServlet extends HttpServlet {
 		String him_pic = cs.getPic(chatperson);
 		req.setAttribute("us_img", us_pic);
 		req.setAttribute("him_img", him_pic);
+		System.out.println("房间号："+roomid);
 		if(roomid>-1) {
+			System.out.println("成功进入房间");
 			req.getRequestDispatcher("/room.jsp?roomid="+roomid1+"&uname="+us).forward(req, resp);
 		}
 	}

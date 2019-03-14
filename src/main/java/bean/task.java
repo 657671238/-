@@ -12,6 +12,8 @@ public class task {
 	private String state;//任务状态
 	private int bounty;//赏金数量
 	private String place;//任务地点
+	private String lng;//地点经度
+	private String lat;//地点纬度
 	private String time_desc;//任务时间描述
 	public int getId() {
 		return id;
@@ -70,5 +72,17 @@ public class task {
 	}
 	public void setTime_desc(String time_desc) {
 		this.time_desc = time_desc;
+	}
+	public String getLng() {
+		return lng;
+	}
+	public void setLng(String lng) {
+		this.lng = lng;
+	}
+	public String getLat() {
+		return lat;
+	}
+	public void setLat(String lat) {
+		this.lat = lat;
 	}
 }

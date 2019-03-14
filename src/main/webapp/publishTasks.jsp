@@ -23,18 +23,7 @@
 </head>
 <body>
    	<%@ include file="mainpage.jsp" %>
-   	
-<%-- 		<div class="iframe_right" >
-			<center class="bt">发布任务</center>
-		 <form method="post" action="addTaskServlet" class="form">
-			任务标题：<input type="text" name="taskTitle" > <br/>
-			任务内容：<input type="text" name="taskBody" > <br/>
-			任务赏金：<input type="text" name="bounty" > <br/>
-			任务地点：<input type="text" name="place" > <br/>
-			<input type="submit" value="确认发布" class="btn"/>
-			</form>
-		</div>
-	</div> --%>
+
 	
 	<div class="container_me">
 		<h3 class="text-center welcome">发布任务</h3>
@@ -64,7 +53,8 @@
 				<label for="place" class="col-sm-2 control-label">任务地点</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="place"
-							name="place" placeholder="请输入任务地点">
+							name="place" placeholder="请输入任务详细地点">
+					<div id="searchResultPanel" style="width:400px;height:400px;background-color:red;display:none;"></div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -75,4 +65,63 @@
 		</form>
 	</div>
 </body>
+	<script type="text/javascript">
+			//添加导航栏选中事件
+			$("li.active").removeClass("active");
+			$(".li_2").addClass("active");
+			
+			
+			// 百度地图API功能
+			function G(id) {
+				return document.getElementById(id);
+			}
+
+			var map = new BMap.Map("l-map");
+			map.centerAndZoom("北京",12);                   // 初始化地图,设置城市和地图级别。
+
+			var ac = new BMap.Autocomplete(    //建立一个自动完成的对象
+				{"input" : "suggestId"
+				,"location" : map
+			});
+
+			ac.addEventListener("onhighlight", function(e) {  //鼠标放在下拉列表上的事件
+			var str = "";
+				var _value = e.fromitem.value;
+				var value = "";
+				if (e.fromitem.index > -1) {
+					value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				}    
+				str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+				
+				value = "";
+				if (e.toitem.index > -1) {
+					_value = e.toitem.value;
+					value = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				}    
+				str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+				G("searchResultPanel").innerHTML = str;
+			});
+
+			var myValue;
+			ac.addEventListener("onconfirm", function(e) {    //鼠标点击下拉列表后的事件
+			var _value = e.item.value;
+				myValue = _value.province +  _value.city +  _value.district +  _value.street +  _value.business;
+				G("searchResultPanel").innerHTML ="onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+				
+				setPlace();
+			});
+
+			function setPlace(){
+				map.clearOverlays();    //清除地图上所有覆盖物
+				function myFun(){
+					var pp = local.getResults().getPoi(0).point;    //获取第一个智能搜索的结果
+					map.centerAndZoom(pp, 18);
+					map.addOverlay(new BMap.Marker(pp));    //添加标注
+				}
+				var local = new BMap.LocalSearch(map, { //智能搜索
+				  onSearchComplete: myFun
+				});
+				local.search(myValue);
+			}
+	</script>
 </html>

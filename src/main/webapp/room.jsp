@@ -178,7 +178,7 @@ $(function(){
 	})
 	
 	function refreshMember(data){
-		var image = "/file/"+"${him_img}";
+		var image = "/file/"+"${us_img}";
 		$(".member").html("");
 		for(var i=0;i<data.length;i++){
 			$(".member").append(
