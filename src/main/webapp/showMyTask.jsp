@@ -19,7 +19,7 @@
 		.iframe_right{
 			/*float: left;*/
 			background: #fcfcfc;
-			width: 88%;
+			width: 100%;
 			height: 100%;
 		}
 	</style>

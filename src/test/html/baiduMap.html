@@ -23,7 +23,7 @@
 	// 百度地图API功能，初始化地图信息
 	var marker;
 	var map = new BMap.Map("allmap");
-	map.centerAndZoom("武汉", 12);
+	map.centerAndZoom(new BMap.Point(114.294338,30.554192), 12);
 	$("#allmap").show();
 	function showInfo(e){
 		alert(e.point.lng + ", " + e.point.lat);
