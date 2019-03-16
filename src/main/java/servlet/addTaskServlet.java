@@ -45,7 +45,11 @@ public class addTaskServlet extends HttpServlet {
 		java.util.Date date = new java.util.Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		t.setPublishDate(sdf.format(date));
-		
+		t.setPlace(req.getParameter("place"));
+		t.setLng(req.getParameter("lng"));
+		t.setLat(req.getParameter("lat"));
+		t.setNeedP_num(req.getParameter("needP_num"));
+		t.setTime_desc(req.getParameter("time_desc"));
 		boolean addtaskSuccess = ts.addtask(t);
 		System.out.println(addtaskSuccess);
 		if (addtaskSuccess) {

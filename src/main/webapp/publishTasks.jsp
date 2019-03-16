@@ -55,6 +55,13 @@
 				</div>
 			</div>
 			<div class="form-group">
+				<label for="time_desc" class="col-sm-2 control-label">任务时间</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="time_desc" 
+							name="time_desc" placeholder="请输入时间描述">
+				</div>
+			</div>
+			<div class="form-group">
 				<label for="needP_num" class="col-sm-2 control-label">所需人数</label>
 				<div class="col-sm-10">
 					<input type="text" class="form-control" id="needP_num" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')"
@@ -64,7 +71,7 @@
 			<div class="form-group">
 				<label for="bounty" class="col-sm-2 control-label">任务赏金</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="bounty"
+					<input type="text" class="form-control" id="bounty" onkeyup="value=value.replace(/^(0+)|[^\d]+/g,'')"
 							name="bounty" placeholder="请输入赏金数">
 				</div>
 			</div>
@@ -74,7 +81,7 @@
 					<input type="text" class="form-control" id="suggestId"
 							name="place" placeholder="请根据提示选择地点">
 					<input type="text" class="form-control" id="lng" style="display:none;"
-							name="lag">
+							name="lng">
 					<input type="text" class="form-control" id="lat" style="display:none;"
 							name="lat">
 					<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
