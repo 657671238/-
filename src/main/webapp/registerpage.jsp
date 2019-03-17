@@ -75,7 +75,7 @@
 			<div class="form-group">
 				<label for="userName" class="col-sm-2 control-label">用户名</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" id="userName" placeholder="请输入手机号"
+					<input type="text" class="form-control" id="userName" placeholder="请输入手机号" name="userName"
 							onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')
 							 name="userName">
 				</div>

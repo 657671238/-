@@ -42,6 +42,11 @@
 							<div >发布日期：${row.publishDate}</div>
 							<div >任务状态：${row.state}</div>
 							<div >任务赏金：${row.bounty}</div>
+							<div >任务地点：${row.place}</div>
+							<div >经度：${row.lng}</div>
+							<div >纬度：${row.lat}</div>
+							<div >需求人数：${row.needP_num}</div>
+							<div >时间描述：${row.time_desc}</div>
 							<div style="display:none" value=${row.id}>${row.id}</div>
 						</div></li>
 				</c:forEach>

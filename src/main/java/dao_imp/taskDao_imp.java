@@ -29,8 +29,9 @@ public class taskDao_imp implements taskDao {
 	public boolean updatetask(task t) {
 		// TODO Auto-generated method stub
 		try {
-			String sql = "update tasks set taskTitle=? ,taskBody=? ,bounty =? where id=?";
-			boolean successupdate = MyDb.getMyDb().cud(sql,t.getTaskTitle(),t.getTaskBody(),t.getBounty(),t.getId());
+			String sql = "update tasks set taskTitle=? ,taskBody=? ,bounty =? ,place=? ,lng=? ,lat=? ,needP_num=? ,time_desc=? where id=?";
+			//System.out.println(sql);
+			boolean successupdate = MyDb.getMyDb().cud(sql,t.getTaskTitle(),t.getTaskBody(),t.getBounty(),t.getPlace(),t.getLng(),t.getLat(),t.getNeedP_num(),t.getTime_desc(),t.getId());
 			return successupdate;
 			
 		} catch (Exception e) {
@@ -69,6 +70,11 @@ public class taskDao_imp implements taskDao {
 				t.setPushPhone(alltasks.getString("pushPhone"));
 				t.setState(alltasks.getString("state"));
 				t.setBounty(alltasks.getInt("bounty"));
+				t.setPlace(alltasks.getString("place"));
+				t.setLat(alltasks.getString("lat"));
+				t.setLng(alltasks.getString("lng"));
+				t.setNeedP_num(alltasks.getString("needP_num"));
+				t.setTime_desc(alltasks.getString("time_desc"));
 				tasklist.add(t);
 			}
 			return tasklist;
@@ -108,6 +114,11 @@ public class taskDao_imp implements taskDao {
 				t.setPushPhone(rs.getString("pushPhone"));
 				t.setState(rs.getString("state"));
 				t.setBounty(rs.getInt("bounty"));
+				t.setPlace(rs.getString("place"));
+				t.setLat(rs.getString("lat"));
+				t.setLng(rs.getString("lng"));
+				t.setNeedP_num(rs.getString("needP_num"));
+				t.setTime_desc(rs.getString("time_desc"));
 			}
 			return t;
 		} catch (Exception e) {
@@ -158,6 +169,11 @@ public class taskDao_imp implements taskDao {
 				t.setPushPhone(alltasks.getString("pushPhone"));
 				t.setState(alltasks.getString("state"));
 				t.setBounty(alltasks.getInt("bounty"));
+				t.setPlace(alltasks.getString("place"));
+				t.setLat(alltasks.getString("lat"));
+				t.setLng(alltasks.getString("lng"));
+				t.setNeedP_num(alltasks.getString("needP_num"));
+				t.setTime_desc(alltasks.getString("time_desc"));
 				tasklist.add(t);
 			}
 			return tasklist;
@@ -183,6 +199,11 @@ public class taskDao_imp implements taskDao {
 				t.setPushPhone(alltasks.getString("pushPhone"));
 				t.setState(alltasks.getString("state"));
 				t.setBounty(alltasks.getInt("bounty"));
+				t.setPlace(alltasks.getString("place"));
+				t.setLat(alltasks.getString("lat"));
+				t.setLng(alltasks.getString("lng"));
+				t.setNeedP_num(alltasks.getString("needP_num"));
+				t.setTime_desc(alltasks.getString("time_desc"));
 				tasklist.add(t);
 			}
 			return tasklist;
