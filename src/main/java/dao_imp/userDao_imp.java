@@ -1,8 +1,11 @@
 package dao_imp;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import bean.User;
+import bean.task;
 import dao.userDao;
 import util.MyDb;
 
@@ -77,6 +80,23 @@ public class userDao_imp implements userDao{
 			// TODO: handle exception
 		}
 		return us;
+	}
+	public List<task> querytask(List<task> ts) {
+		// TODO Auto-generated method stub
+		List<task> tks = new ArrayList<task>();
+		try {
+			for(task t : ts) {
+				User user = this.queryone(t.getPushPhone());
+				t.setPhoto(user.getImage());
+				t.setName(user.getName());
+				t.setSchool(user.getSchool());
+				tks.add(t);
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return tks;
 	}
 
 }

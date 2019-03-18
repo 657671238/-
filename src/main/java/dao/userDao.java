@@ -1,6 +1,9 @@
 package dao;
 
+import java.util.List;
+
 import bean.User;
+import bean.task;
 
 public interface userDao {
 	public boolean isexist(String phoneNumber);
@@ -17,4 +20,6 @@ public interface userDao {
 	
 	public User queryone(String phoneNumber);
 	// TODO 根据主键查询用户信息
+	
+	public List<task> querytask(List<task> ts);//查询task的发布人信息填充到list中
 }

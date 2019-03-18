@@ -16,6 +16,9 @@ public class task {
 	private String lat;//地点纬度
 	private String needP_num;//任务需求人数
 	private String time_desc;//任务时间描述
+	private String name;
+	private String school;
+	private String photo;
 	public int getId() {
 		return id;
 	}
@@ -91,5 +94,23 @@ public class task {
 	}
 	public void setNeedP_num(String needP_num) {
 		this.needP_num = needP_num;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSchool() {
+		return school;
+	}
+	public void setSchool(String school) {
+		this.school = school;
+	}
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 }

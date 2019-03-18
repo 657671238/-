@@ -12,7 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import bean.task;
 import service.taskService;
+import service.userService;
 import service_imp.taskService_imp;
+import service_imp.userService_imp;
 
 @WebServlet("/selectedTasksServlet")
 public class selectedTasksServlet extends HttpServlet {
@@ -32,7 +34,9 @@ public class selectedTasksServlet extends HttpServlet {
 		}
 		taskService ts = new taskService_imp();
 		List<task> tasklist = ts.queryallselectedtask(us);
-		req.setAttribute("tasklist", tasklist);
+		userService uss = new userService_imp();
+		List<task> tasklists = uss.querytaskbody(tasklist);
+		req.setAttribute("tasklist", tasklists);
 		req.getRequestDispatcher("/selectableTasks.jsp").forward(req, resp);
 		
 	}

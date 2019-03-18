@@ -1,6 +1,9 @@
 package service_imp;
 
+import java.util.List;
+
 import bean.User;
+import bean.task;
 import dao.userDao;
 import dao_imp.userDao_imp;
 import service.userService;
@@ -35,6 +38,12 @@ public class userService_imp implements userService {
 		// TODO Auto-generated method stub
 		userDao ud = new userDao_imp();
 		return ud.queryone(phoneNumber);
+	}
+
+	public List<task> querytaskbody(List<task> ts) {
+		// TODO Auto-generated method stub
+		userDao ud = new userDao_imp();
+		return ud.querytask(ts);
 	}
 
 }
