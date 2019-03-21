@@ -45,16 +45,7 @@
  			z-index:9999;
 		}
 	</style>
-	<script type="text/javascript">
-		function update(){
-			alert("查看请求人员");
-			window.location.href="showRequestPersonServlet?taskId="+${task.id};
-		};
-		function deltask(){
-			alert("确认撤销任务");
-			window.location.href="delTaskServlet?taskId="+${task.id};
-		};
-	</script>
+
 </head>
 <body>
 	<div id="mainer">
@@ -63,12 +54,12 @@
    		
    		<div class="container_me">
 		<h3 class="text-center welcome">编辑任务</h3>
-		<form action="addTaskServlet" method="post" class="form-horizontal loginform" role="form">
+		<form action="updateTaskServlet" method="post" class="form-horizontal loginform" role="form">
 			<div class="form-group">
-				<label for="taskTitle" class="col-sm-2 control-label">发布时间</label>
+				<label for="taskTitle_1" class="col-sm-2 control-label">发布时间</label>
 				<div class="col-sm-10">
-					<div class="form-control" id="taskTitle"
-							 name="taskTitle" >${task.publishDate}</div>
+					<div class="form-control" id="taskTitle_1"
+							 name="publishDate" >${task.publishDate}</div>
 				</div>
 			</div>
 			<div class="form-group">
@@ -116,34 +107,24 @@
 					<input type="text" class="form-control" id="lat" style="display:none;" value="${task.lat}"
 							name="lat">
 					<input type="text" name="id" value="${task.id}" style="display:none;">
+					<input type="text" name="state" value="${task.state}" style="display:none;">
 					<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;"></div>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<button type="submit" class="btn btn-default">确认修改</button>
-					<button type="button" class="btn btn-default" onclick="">撤销任务</button>
+					<button type="button" class="btn btn-default" onclick="deltask()">撤销任务</button>
+					<button type="button" class="btn btn-default" onclick="update()">委派任务</button>
 				</div>
 			</div>
 		</form>
 	</div>
-<%-- 		<div class="iframe_right" >
-		    	 <br/><h3 class="text-center"><strong>查看我发布的任务</strong></h3>
-		 <form method="post" action="updateTaskServlet" class="form">
-			任务编号：<input type="text" onfocus=this.blur() name="id" value="${task.id}"> <br/>
-			发布日期：<input type="text" onfocus=this.blur() name="date" value="${task.publishDate}"> <br/>
-			任务状态：<input type="text" onfocus=this.blur() name="state" value="${task.state}"> <br/>
-			任务标题：<input type="text" name="title" value="${task.taskTitle}"> <br/>
-			任务内容：<input type="text" name="body" value="${task.taskBody}"> <br/>
-			任务赏金：<input type="text" name="bounty" value="${task.bounty}"> <br/>
-            <input type="submit" value="确认修改" class="btn"  />
-		</form>
-		<div><button type="submit" value="查看请求人员" class="btn" onclick=update()>查看请求人员</button></div>
-		<button  value="撤销任务" class="btn" onclick=deltask()>撤销任务</button>
-		</div> --%>
+
 	</div>
 </body>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=IOq4Z8Vm45rpk0rdkind47dOHR7zAwAf"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
 	<script type="text/javascript">
 		//地图使用的全局变量
 		var map;
@@ -294,5 +275,32 @@
 			});
 			local.search(myValue);
 		}
+
+		function update(){
+			//alert("查看请求人员");
+			window.location.href="showRequestPersonServlet?taskId="+${task.id};
+		};
+		function deltask(){
+			layer.open({
+				  title:"提示信息",
+				  content: '确认撤销任务？'
+				  ,btn: ['取消', '确认撤销']
+				  ,yes: function(index, layero){
+					  layer.close(index);
+				    //按钮【按钮一】的回调
+				  }
+				  ,btn2: function(index, layero){
+				    //按钮【按钮二】的回调
+				    window.location.href="delTaskServlet?taskId="+${task.id};
+				    //return false 开启该代码可禁止点击该按钮关闭
+				  }
+				  ,cancel: function(){ 
+				    //右上角关闭回调
+				    
+				    //return false 开启该代码可禁止点击该按钮关闭
+				  }
+				});
+			
+		};
 	</script>
 </html>
