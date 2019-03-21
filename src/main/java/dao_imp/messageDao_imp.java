@@ -13,8 +13,8 @@ public class messageDao_imp implements messageDao {
 	public boolean addmessage(message m) {
 		// TODO Auto-generated method stub
 		try {
-			String sql = "insert into messages(phone ,roomid ,text,date) value(?,?,?,?)";
-			boolean successAdd = MyDb.getMyDb().cud(sql, m.getPhone(),m.getRoomid(),m.getText(),m.getDate());
+			String sql = "insert into messages(phone ,roomid ,text,date,state) value(?,?,?,?,?)";
+			boolean successAdd = MyDb.getMyDb().cud(sql, m.getPhone(),m.getRoomid(),m.getText(),m.getDate(),m.getState());
 			return successAdd;
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -32,7 +32,7 @@ public class messageDao_imp implements messageDao {
 				message m = new message();
 				m.setDate(rs.getString("date"));
 				m.setPhone(rs.getString("phone"));
-				m.setRoomid(roomid);
+				m.setRoomid(roomid); 
 				m.setText(rs.getString("text"));
 				l.add(m);
 			}
@@ -41,6 +41,18 @@ public class messageDao_imp implements messageDao {
 			// TODO: handle exception
 		}
 		return l;
+	}
+
+	public boolean change_all_state(int roomid, String user) {
+		// TODO Auto-generated method stub
+		boolean success = false;
+		try {
+			String sql = "update messages set state=1 where roomid = ? and phone != ?";
+			success = MyDb.getMyDb().cud(sql, roomid , user);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
 	}
 
 }

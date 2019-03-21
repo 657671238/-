@@ -25,4 +25,11 @@ public class messageService_imp implements messageService {
 		return md.selectAllMessage(roomid);
 	}
 
+	public boolean changestate(String room, String user) {
+		// TODO Auto-generated method stub
+		int roomid = Integer.parseInt(room);
+		messageDao md = new messageDao_imp();
+		return md.change_all_state(roomid,user);
+	}
+
 }

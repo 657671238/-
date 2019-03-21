@@ -74,13 +74,17 @@
 				<c:forEach items="${tasklist}" var="row">
 				<div class="connes1">
 					<div id=${row.id} onclick="find(this.id)" class="list-group conntainn">
+						<div style="display:none;">
+							<div >经度：${row.lng}</div>
+							<div >纬度：${row.lat}</div>
+						</div>
 						<div style="height:10px"></div>
 						<div class="user_photo">
 							<img src="/file/${row.photo}" style="height:70px;width:70px;">
 						</div>
-						<div style="float: right;margin-right:15px"><span class="badge">状态</span></div>
+						<div style="float: right;margin-right:15px"><span class="badge">请求/需要人数:${row.state}/${row.needP_num}</span></div>
 						<div class="username">${row.name}</div>
-						<div class="date">${row.publishDate}</div>	
+						<div class="date">${row.publishDate}&nbsp&nbsp&nbsp${row.school}</div>	
 						<hr style=" height:2px;border:none;border-top:2px dashed  #185598;margin:10px;" />
 						<div class="task_body">
 							<div style="font-size:19px;">${row.taskTitle}:</div>
@@ -97,7 +101,7 @@
 						</div>
 						<div class="money">
 							<img src="./img/money.png" style="height:20px;width:20px;">
-							任务赏金：${row.bounty}
+							任务赏金：${row.bounty}元
 						</div>
 						
 <%-- 						<span class="badge">状态</span>

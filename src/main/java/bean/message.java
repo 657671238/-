@@ -5,6 +5,7 @@ public class message {
 	private int roomid;
 	private String text;
 	private String date;
+	private int state;
 	public String getPhone() {
 		return phone;
 	}
@@ -28,6 +29,12 @@ public class message {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
 	}
 
 }

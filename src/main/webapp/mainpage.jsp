@@ -36,7 +36,7 @@
         </button>
         <a class="navbar-brand" href="#">任务菜单</a>
     </div>
-    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+    <div class="collapse navbar-collapse" id="example-navbar-collapse" >
         <ul class="nav navbar-nav">
             <li class="li_1"><a href="myMessageServlet">会员信息</a></li>
             <li class="li_2"><a href="publishTasks.jsp">发布任务</a></li>

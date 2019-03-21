@@ -10,4 +10,8 @@ public interface messageDao {
 	
 	//选出房间所有历史消息
 	List<message> selectAllMessage(int roomid);
+	
+	//修改消息状态为已读
+	boolean change_all_state(int roomid,String user);
+	
 }

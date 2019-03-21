@@ -53,6 +53,8 @@ public class WebSocketServlet {
 			this.rejoin = 1;
 		}
 		r.put(user, this);
+		messageService ms = new messageService_imp();
+		ms.changestate(room,user);
 	}
 	
 	//发送对应的消息到用户
@@ -109,6 +111,8 @@ public class WebSocketServlet {
 				int roomid1 = Integer.parseInt(roomid);
 				m.setRoomid(roomid1);
 				m.setText(object.get("content").toString());
+				int state = roomList.get(roomid).size()==2?1:0;
+				m.setState(state);
 				messageService ms = new messageService_imp();
 				boolean successAdd = ms.addmessage(m);
 				if(successAdd) {
