@@ -10,8 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.User;
+import bean.task;
 import service.requestService;
+import service.taskService;
+import service.userService;
 import service_imp.requestService_imp;
+import service_imp.taskService_imp;
+import service_imp.userService_imp;
 
 /**
  * Servlet implementation class showRequestPersonServlet
@@ -37,6 +43,9 @@ public class showRequestPersonServlet extends HttpServlet {
 		requestService rs = new requestService_imp();
 		List<bean.request> ls = rs.queryAllRequest(taskid);
 		request.setAttribute("requestsList", ls);
+		taskService uss = new taskService_imp();
+		task u = uss.queryone(taskid);
+		request.setAttribute("needP_num", u.getNeedP_num());
 		request.getRequestDispatcher("/showRequestsList.jsp").forward(request, response);
 	
 	}
