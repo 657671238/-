@@ -4,8 +4,10 @@ import java.util.List;
 import bean.request;
 import dao.requestDao;
 import dao.taskDao;
+import dao.userDao;
 import dao_imp.requestDao_imp;
 import dao_imp.taskDao_imp;
+import dao_imp.userDao_imp;
 import service.requestService;;
 
 public class requestService_imp implements requestService {
@@ -24,7 +26,10 @@ public class requestService_imp implements requestService {
 	public List<request> queryAllRequest(int taskId) {
 		// TODO Auto-generated method stub
 		requestDao rd = new requestDao_imp();
-		return rd.queryAllRequest(taskId);
+		List<request> ls =  rd.queryAllRequest(taskId);
+		userDao ud = new userDao_imp();
+		ls = ud.queryusermessage(ls);
+ 		return ls;
 	}
 
 
