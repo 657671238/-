@@ -140,6 +140,19 @@ public class taskDao_imp implements taskDao {
 		return false;
 	}
 	
+	public boolean changeState(int id,int newstate) {
+		// TODO Auto-generated method stu
+		try {
+			String sql = "update tasks set state =? where id =?";
+			boolean successChange = MyDb.getMyDb().cud(sql, newstate, id);
+			return successChange;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}	
+	
+	
 	public int queryState(int id) {
 		try {
 			String sql = "select state from tasks where id =?";
@@ -212,6 +225,7 @@ public class taskDao_imp implements taskDao {
 		}
 		return tasklist;
 	}
+
 
 }
 

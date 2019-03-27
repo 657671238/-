@@ -2,6 +2,8 @@ package service_imp;
 
 import java.util.List;
 
+import com.sun.net.httpserver.Authenticator.Success;
+
 import bean.task;
 import dao.requestDao;
 import dao.taskDao;
@@ -45,7 +47,7 @@ public class taskService_imp implements taskService {
 		taskDao td = new taskDao_imp();
 		boolean delTaskSuccess = td.deletetask(id);
 		requestDao rs = new requestDao_imp();
-		boolean delRequest = rs.deleteRequests(id);
+		boolean delRequest = rs.delchangestate(-1, id);
 		if(delTaskSuccess&&delRequest) {
 			return true;
 		}
@@ -68,6 +70,26 @@ public class taskService_imp implements taskService {
 		// TODO Auto-generated method stub
 		taskDao td = new taskDao_imp();
 		return td.queryallmytask(id);
+	}
+
+	public boolean changestate(int state) {
+		// TODO Auto-generated method stub
+		taskDao td = new taskDao_imp();
+		return td.changeState(state);
+	}
+	/*委派逻辑：
+	将列表中的人对应请求改为1，其余改为2，将任务状态改为-1；代表正在进行*/
+	public boolean delegate(int task_id, String[] users) {
+		// TODO Auto-generated method stub
+		requestDao rd = new requestDao_imp();
+		boolean success1 = rd.changeusersState(task_id, users);
+		boolean success3 = rd.changeotherState(task_id);
+		taskDao td = new taskDao_imp();
+		boolean success2 = td.changeState(task_id, -1);
+		if (success2&&success1) {
+			return true;
+		}
+		return false;
 	}
 
 }

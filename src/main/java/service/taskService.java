@@ -20,5 +20,8 @@ public interface taskService {
 	public boolean deletetask(int id);
 	
 	public boolean updatetask(task t);
-
+	
+	public boolean changestate(int state); 
+		
+	public boolean delegate(int task_id,String[] users);
 }

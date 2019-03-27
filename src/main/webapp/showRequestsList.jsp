@@ -211,7 +211,7 @@ function submitOrder(){
 			alert("选中人数必须等于需求人数！");
 			return;
 		}
-		else{
+		else{ 
 			var id = ${param.taskId};
 			layer.open({
 				  title:"提示信息",

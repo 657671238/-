@@ -29,6 +29,10 @@ public interface taskDao {
 	//查询单个任务的全部信息
 	public task queryone(int id);
 	
-	//更改状态
+	//更改状态,在增加请求人员时，state++
 	public boolean changeState(int id);
+	
+	//更改状态,在委派任务时，state=-1
+	public boolean changeState(int id,int newstate);
+
 }

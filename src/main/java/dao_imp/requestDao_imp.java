@@ -46,7 +46,7 @@ public class requestDao_imp implements requestDao {
 		try {
 			String sql =  "delete from requests where task_Id = ?";
 			boolean successDel = MyDb.getMyDb().cud(sql, id);
-			return true;
+			return successDel;
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -74,5 +74,51 @@ public class requestDao_imp implements requestDao {
 		
 		return null;
 	}
+	
+	public boolean delchangestate(int newstate,int task_id) {
+		try {
+			String sql = "update requests set state = ? where task_ID = ?";
+			boolean successDel = MyDb.getMyDb().cud(sql, newstate,task_id);
+			return successDel;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return false;
+		
+	}
 
+	public boolean changeusersState(int task_id, String[] users) {
+		// TODO Auto-generated method stub
+		try {
+			for (String user : users) {
+				String sql = "update requests set state = ? where task_ID = ? and requestPhone = ?";
+				boolean successchange = MyDb.getMyDb().cud(sql, 1,task_id, user);
+				if(!successchange) {
+					return false;
+				}
+			}
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
+
+	public boolean changeotherState(int task_id) {
+		// TODO Auto-generated method stub
+		try {
+			//System.out.println("这是其他改为2:"+task_id);
+			String sql = "update requests set state = 2 where task_ID = ? and state != 1";
+			boolean successchange = MyDb.getMyDb().cud(sql, task_id);
+			if (!successchange) {
+				return false;
+			}
+
+			return true;
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
+	}
 }
