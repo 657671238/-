@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import bean.emailRead;
 import bean.message;
 import dao.messageDao;
 import dao_imp.messageDao_imp;
@@ -30,6 +31,12 @@ public class messageService_imp implements messageService {
 		int roomid = Integer.parseInt(room);
 		messageDao md = new messageDao_imp();
 		return md.change_all_state(roomid,user);
+	}
+
+	public List<emailRead> getreadlist(String user) {
+		// TODO Auto-generated method stub
+		messageDao md = new messageDao_imp();
+		return md.getreadlist(user);
 	}
 
 }

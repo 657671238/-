@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.emailRead;
 import bean.message;
 import dao.messageDao;
 import util.MyDb;
@@ -53,6 +54,27 @@ public class messageDao_imp implements messageDao {
 			// TODO: handle exception
 		}
 		return false;
+	}
+
+	public List<emailRead> getreadlist(String user) {
+		// TODO Auto-generated method stub
+		List<emailRead> erlist = new ArrayList<emailRead>();
+		try {
+			String sql = "SELECT m.roomid ,count(case when state=0 and phone!=? then 1 END) as noread," + 
+					"count(case when state=1 and phone!=? then 1 END) as readed " + 
+					"from messages m ,chatroom c WHERE m.roomid=c.roomid and (c.person_1=? or c.person_2=?) GROUP BY m.roomid";
+			ResultSet rs = MyDb.getMyDb().query(sql, user,user,user,user);
+			while(rs.next()) {
+				emailRead er = new emailRead();
+				er.setRoomid(rs.getInt("roomid"));
+				er.setNoread(rs.getInt("noread"));
+				er.setReaded(rs.getInt("readed"));
+				erlist.add(er);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return erlist;
 	}
 
 }

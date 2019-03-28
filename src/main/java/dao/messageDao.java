@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import bean.emailRead;
 import bean.message;
 
 public interface messageDao {
@@ -14,4 +15,6 @@ public interface messageDao {
 	//修改消息状态为已读
 	boolean change_all_state(int roomid,String user);
 	
+	//读取列表信息以及未读消息的条数
+	List<emailRead> getreadlist(String user);
 }
