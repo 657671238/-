@@ -4,9 +4,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import bean.User;
 import bean.emailRead;
 import bean.message;
 import dao.messageDao;
+import dao.userDao;
 import util.MyDb;
 
 public class messageDao_imp implements messageDao {
@@ -88,12 +90,41 @@ public class messageDao_imp implements messageDao {
 				}
 				erlist1.add(rl);
 			}
-			
+			userDao ud = new userDao_imp();
+			for(emailRead rd:erlist1) {
+				User u = ud.queryone(rd.getOtherId());
+				rd.setOthername(u.getName());
+				rd.setImage(u.getImage());
+				erlist2.add(rd);
+			}
+			//查询对应的最后一条消息以及发送时间
+			String sql2 = "select a.* from messages a where date = (select max(date) from messages where roomid = ? and phone = ?)";
+			for(emailRead rd:erlist2) {
+				ResultSet rs1 = MyDb.getMyDb().query(sql2, rd.getRoomid(),rd.getOtherId());
+				rs1.next();
+				rd.setLastmessage(rs1.getString("text"));
+				rd.setMessageDate(rs1.getString("date"));
+				erlist3.add(rd);
+			}			
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println("messageDao_imp报错");
 		}
-		return erlist1;
+		return erlist3;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

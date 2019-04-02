@@ -50,7 +50,7 @@
                     <li><a href="selectedTasksServlet"  class="li_11">已选任务</a></li>
                 </ul>
             </li>
-            <li><a href="getemailsServlet">消息列表</a></li>
+            <li class="li_4"><a href="getemailsServlet">消息列表</a></li>
         </ul>
     </div>
     </div>

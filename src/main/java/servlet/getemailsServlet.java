@@ -33,10 +33,12 @@ public class getemailsServlet extends HttpServlet {
 		
 		messageService ms = new messageService_imp();
 		List<emailRead> erlist = ms.getreadlist(us);
-		for(emailRead e :erlist){
-			System.out.println(e.getRoomid()+","+e.getReaded()+","+e.getNoread()+","+e.getOtherId());
-		}
-		
+/*		for(emailRead e :erlist){
+			System.out.println(e.getRoomid()+","+e.getReaded()+","+e.getNoread()+","+e.getOtherId()+","+e.getImage()+","+e.getOthername());
+			System.out.println(e.getMessageDate()+","+e.getLastmessage());
+		}*/
+		req.setAttribute("erlist", erlist);
+		req.getRequestDispatcher("/allchatmessage.jsp").forward(req,resp);
 	}
 	
 }
