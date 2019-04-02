@@ -34,7 +34,7 @@ public class getemailsServlet extends HttpServlet {
 		messageService ms = new messageService_imp();
 		List<emailRead> erlist = ms.getreadlist(us);
 		for(emailRead e :erlist){
-			System.out.println(e.getRoomid()+","+e.getReaded()+","+e.getNoread());
+			System.out.println(e.getRoomid()+","+e.getReaded()+","+e.getNoread()+","+e.getOtherId());
 		}
 		
 	}

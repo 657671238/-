@@ -56,11 +56,16 @@ public class messageDao_imp implements messageDao {
 		return false;
 	}
 
+	//查询readlist需要填充的数据，逻辑比较辅助
 	public List<emailRead> getreadlist(String user) {
 		// TODO Auto-generated method stub
 		List<emailRead> erlist = new ArrayList<emailRead>();
+		List<emailRead> erlist1 = new ArrayList<emailRead>();
+		List<emailRead> erlist2 = new ArrayList<emailRead>();
+		List<emailRead> erlist3 = new ArrayList<emailRead>();
 		try {
-			String sql = "SELECT m.roomid ,count(case when state=0 and phone!=? then 1 END) as noread," + 
+			//查询message中消息条数，并分为以读与为读
+			String sql = "SELECT m.roomid,count(case when state=0 and phone!=? then 1 END) as noread," + 
 					"count(case when state=1 and phone!=? then 1 END) as readed " + 
 					"from messages m ,chatroom c WHERE m.roomid=c.roomid and (c.person_1=? or c.person_2=?) GROUP BY m.roomid";
 			ResultSet rs = MyDb.getMyDb().query(sql, user,user,user,user);
@@ -71,10 +76,24 @@ public class messageDao_imp implements messageDao {
 				er.setReaded(rs.getInt("readed"));
 				erlist.add(er);
 			}
+			//查询发送消息方的信息，id姓名图片等
+			String sql1 = "select * from chatroom where roomid = ?";
+			for(emailRead rl:erlist) {
+				ResultSet r = MyDb.getMyDb().query(sql1, rl.getRoomid());
+				r.next();
+				if(r.getString("person_1").equals(user)) {
+					rl.setOtherId(r.getString("person_2"));
+				}else {
+					rl.setOtherId(r.getString("person_1"));
+				}
+				erlist1.add(rl);
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
+			System.out.println("messageDao_imp报错");
 		}
-		return erlist;
+		return erlist1;
 	}
 
 }
