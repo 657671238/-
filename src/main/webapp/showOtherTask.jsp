@@ -44,18 +44,7 @@
  			z-index:9999;
 		}
 	</style>
-	<script type="text/javascript">
-		function update(){
-			alert("修改键位");
-		};
-		function deltask(){
-			alert("确认撤销任务");
-			window.location.href="delTaskServlet?taskId="+${task.id};
-		};
-		function chatroom(id){
-			window.location.href="trytochatroomServlet?phone="+id;
-		}
-	</script>
+
 </head>
 <body>
    	<div id="mainer">
@@ -64,7 +53,7 @@
    		
    		<div class="container_me">
 		<h3 class="text-center welcome">任务详情</h3>
-		<form action="requestTaskServlet" method="post" class="form-horizontal loginform" role="form">
+		<form action="requestTaskServlet" id="form_f" method="post" class="form-horizontal loginform" role="form">
 			<div class="form-group">
 				<label for="taskTitle_1" class="col-sm-2 control-label">发布时间</label>
 				<div class="col-sm-10">
@@ -128,28 +117,121 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">请求任务</button>
-					<button type="button" class="btn btn-default" onclick="deltask()">联系发布者</button>
+					<button type="button" class="btn btn-default" onclick= "submitt(${task.state})">请求任务</button>
+					<button type="button" class="btn btn-default" onclick="chatroom(${task.pushPhone})">联系发布者</button>
 				</div>
 			</div>
 		</form>
 	</div>
 
 	</div>
-<%-- 		<div class="iframe_right" >
-		    	 <br/><h3 class="text-center"><strong>查看此任务</strong></h3>
-		 <form method="post" action="requestTaskServlet" class="form">
-			任务编号：<input type="text" onfocus=this.blur() name="id" value="${task.id}"> <br/>
-			发布人ID：<input type="text" onfocus=this.blur() name="phone" value="${task.pushPhone}"> <br/>
-			发布日期：<input type="text" onfocus=this.blur() name="date" value="${task.publishDate}"> <br/>
-			任务状态：<input type="text" onfocus=this.blur() name="state" value="${task.state}"> <br/>
-			任务标题：<input type="text" onfocus=this.blur() name="title" value="${task.taskTitle}"> <br/>
-			任务内容：<input type="text" onfocus=this.blur() name="body" value="${task.taskBody}"> <br/>
-			任务赏金：<input type="text" onfocus=this.blur() name="bounty" value="${task.bounty}"> <br/>
-            <input type="submit" value="请求此任务" class="btn"  />
-            
-		</form>
-			<button onclick=chatroom(${task.pushPhone})>打开聊天</button>
-		</div> --%>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=IOq4Z8Vm45rpk0rdkind47dOHR7zAwAf"></script>
+	
+	<script type="text/javascript">
+		function submitt(state){
+			if(state==-1){
+				alert("该任务正在进行中！");
+			}
+		}
+		function chatroom(id){
+			window.location.href="trytochatroomServlet?phone="+id;
+		}
+		//点击地理位置输入框时地图才出现
+		$("#suggestId").focus(function() {
+			$("#l-map").show();
+			if($("#lng").val()!=null && $("#lng").val()!=""  ){
+				map.centerAndZoom(new BMap.Point(center_lng,center_lat), 18);
+				marker = new BMap.Marker(new BMap.Point(center_lng, center_lat)); // 创建点
+				map.addOverlay(marker);
+			}
+			
+		});
+		$("#suggestId").blur(function(){
+			$("#l-map").hide();
+		});
+		
+		//地图使用的全局变量
+		var map;
+		var myValue;
+		//初始化函数
+		$(function(){
+
+			// 初始化地图,设置城市和地图级别。
+			map = new BMap.Map("l-map");
+			
+			var center_lng = $("#lng").val();
+			var center_lat = $("#lat").val();
+			if($("#lng").val()==null || $("#lng").val()==""  ){
+				map.centerAndZoom(new BMap.Point(114.160676,30.671784), 12);
+			}
+			else{ 
+				map.centerAndZoom(new BMap.Point(center_lng,center_lat), 18);
+				marker = new BMap.Marker(new BMap.Point(center_lng, center_lat)); // 创建点
+				map.addOverlay(marker);
+			} 
+			
+			
+			//设置鼠标滚动事件
+			map.enableScrollWheelZoom(true);
+
+		})
+
+
+	 	function  getpointName(lng,lat){
+	 		console.log(lng+","+lat);
+			$.ajax({
+				
+						type : "GET",
+						//添加参数进行分页  查询
+						url : "http://api.map.baidu.com/geocoder/v2/",
+						data : {
+							location : lat+","+lng,
+							latest_admin:1,
+							output:"json",
+							ak: "IOq4Z8Vm45rpk0rdkind47dOHR7zAwAf"
+						},
+						dataType : "jsonp",
+						success:function(data){
+							if(data.status===0){
+								console.log("数据请求成功");
+								console.log(data.result.formatted_address);
+								console.log(data.result.sematic_description);
+								//实现地理位置的存储
+								$("#suggestId").val(data.result.formatted_address+data.result.sematic_description);
+							}
+						},
+						error : function(xhr, error, status) {
+							console.log(error);
+							//alert(error);
+							//mylayer.showError(data.data);
+						}
+			})
+			
+		} 
+
+		// 百度地图API功能
+		function G(id) {
+			return document.getElementById(id);
+		}
+
+		//设置放大后的新地图
+		function setPlace() {
+			map.clearOverlays(); //清除地图上所有覆盖物
+			function myFun() {
+				var pp = local.getResults().getPoi(0).point; //获取第一个智能搜索的结果
+				console.log(pp.lng + " " + pp.lat);
+				//实现经纬度的存储
+				$("#lng").val(pp.lng);
+				$("#lat").val(pp.lat);
+				map.centerAndZoom(pp, 18);
+				map.addOverlay(new BMap.Marker(pp)); //添加标注
+			}
+			var local = new BMap.LocalSearch(map, { //智能搜索
+				onSearchComplete : myFun
+			});
+			local.search(myValue);
+		}
+
+	</script>
 </body>
 </html>
