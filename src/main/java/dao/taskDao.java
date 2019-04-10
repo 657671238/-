@@ -34,5 +34,7 @@ public interface taskDao {
 	
 	//更改状态,在委派任务时，state=-1
 	public boolean changeState(int id,int newstate);
+	
+	public int queryState(int id);
 
 }

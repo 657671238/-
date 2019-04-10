@@ -91,5 +91,13 @@ public class taskService_imp implements taskService {
 		}
 		return false;
 	}
-
+	public int requesttaskstate(int id) {
+		taskDao rd = new taskDao_imp();
+		return rd.queryState(id);
+	}
 }
+
+
+
+
+

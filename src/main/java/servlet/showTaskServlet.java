@@ -40,12 +40,25 @@ public class showTaskServlet extends HttpServlet {
 		//此处分开判断是为了在我的任务栏目中避免判断逻辑
 		//System.out.println(ismyTask);
 		if(ismyTask) {
-			req.getRequestDispatcher("showMyTaskServlet").forward(req, resp);
+			
+			int taskstate = ts.requesttaskstate(task_Id);
+			//任务未被分配，进入任务详情页面
+			if(taskstate>=0) {
+				req.getRequestDispatcher("showMyTaskServlet").forward(req, resp);
+				return;	
+			}
+			//任务已经发布，不可修改，进入任务进度页面
+			else {
+				return;	
+			}
+		}
+		else {
+			task task = ts.queryone(task_Id);
+			req.setAttribute("task", task);
+			req.getRequestDispatcher("/showOtherTask.jsp").forward(req, resp);
 			return;
 		}
-		task task = ts.queryone(task_Id);
-		req.setAttribute("task", task);
-		req.getRequestDispatcher("/showOtherTask.jsp").forward(req, resp);
+		
 	}
 
 }

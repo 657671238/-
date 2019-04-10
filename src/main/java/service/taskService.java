@@ -24,4 +24,6 @@ public interface taskService {
 	public boolean changestate(int state); 
 		
 	public boolean delegate(int task_id,String[] users);
+	
+	public int requesttaskstate(int id);
 }

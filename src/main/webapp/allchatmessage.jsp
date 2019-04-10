@@ -20,7 +20,7 @@
 		}
 		.connes1{
 			padding-left:10px;
-			background-color:#60a6eb;
+			background-color:#befdff;
 			padding-right:20px;
 		}
 		.conntainn{

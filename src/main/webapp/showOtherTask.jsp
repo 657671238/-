@@ -117,8 +117,8 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="button" class="btn btn-default" onclick= "submitt(${task.state})">请求任务</button>
-					<button type="button" class="btn btn-default" onclick="chatroom(${task.pushPhone})">联系发布者</button>
+					<button type="button" class="btn btn-info" onclick= "submitt(${task.state},${task.pushPhone},${task.id})">请求任务</button>
+					<button type="button" class="btn btn-info" onclick="chatroom(${task.pushPhone})">联系发布者</button>
 				</div>
 			</div>
 		</form>
@@ -128,109 +128,52 @@
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=IOq4Z8Vm45rpk0rdkind47dOHR7zAwAf"></script>
 	
 	<script type="text/javascript">
-		function submitt(state){
+	
+		//地图使用的全局变量
+		var map;
+		var myValue;
+		function submitt(state,phone,id){
 			if(state==-1){
 				alert("该任务正在进行中！");
+			}
+			else{
+				window.location.href="requestTaskServlet?phone="+phone+"&&id="+id;
 			}
 		}
 		function chatroom(id){
 			window.location.href="trytochatroomServlet?phone="+id;
 		}
-		//点击地理位置输入框时地图才出现
-		$("#suggestId").focus(function() {
-			$("#l-map").show();
-			if($("#lng").val()!=null && $("#lng").val()!=""  ){
-				map.centerAndZoom(new BMap.Point(center_lng,center_lat), 18);
-				marker = new BMap.Marker(new BMap.Point(center_lng, center_lat)); // 创建点
-				map.addOverlay(marker);
-			}
-			
-		});
+
 		$("#suggestId").blur(function(){
 			$("#l-map").hide();
 		});
 		
-		//地图使用的全局变量
-		var map;
-		var myValue;
+
 		//初始化函数
 		$(function(){
 
-			// 初始化地图,设置城市和地图级别。
-			map = new BMap.Map("l-map");
-			
-			var center_lng = $("#lng").val();
-			var center_lat = $("#lat").val();
-			if($("#lng").val()==null || $("#lng").val()==""  ){
-				map.centerAndZoom(new BMap.Point(114.160676,30.671784), 12);
-			}
-			else{ 
-				map.centerAndZoom(new BMap.Point(center_lng,center_lat), 18);
-				marker = new BMap.Marker(new BMap.Point(center_lng, center_lat)); // 创建点
-				map.addOverlay(marker);
-			} 
-			
-			
-			//设置鼠标滚动事件
-			map.enableScrollWheelZoom(true);
+			//点击地理位置输入框时地图才出现
+			$("#suggestId").focus(function() {
+				$("#l-map").show();
+				// 初始化地图,设置城市和地图级别。
+				map = new BMap.Map("l-map");
+				
+				var center_lng = $("#lng").val();
+				var center_lat = $("#lat").val();
+				if($("#lng").val()==null || $("#lng").val()==""  ){
+					map.centerAndZoom(new BMap.Point(114.160676,30.671784), 12);
+				}
+				else{ 
+					map.centerAndZoom(new BMap.Point(center_lng,center_lat), 18);
+					marker = new BMap.Marker(new BMap.Point(center_lng, center_lat)); // 创建点
+					map.addOverlay(marker);
+				} 
+				//设置鼠标滚动事件
+				map.enableScrollWheelZoom(true);
+			});
 
 		})
 
-
-	 	function  getpointName(lng,lat){
-	 		console.log(lng+","+lat);
-			$.ajax({
-				
-						type : "GET",
-						//添加参数进行分页  查询
-						url : "http://api.map.baidu.com/geocoder/v2/",
-						data : {
-							location : lat+","+lng,
-							latest_admin:1,
-							output:"json",
-							ak: "IOq4Z8Vm45rpk0rdkind47dOHR7zAwAf"
-						},
-						dataType : "jsonp",
-						success:function(data){
-							if(data.status===0){
-								console.log("数据请求成功");
-								console.log(data.result.formatted_address);
-								console.log(data.result.sematic_description);
-								//实现地理位置的存储
-								$("#suggestId").val(data.result.formatted_address+data.result.sematic_description);
-							}
-						},
-						error : function(xhr, error, status) {
-							console.log(error);
-							//alert(error);
-							//mylayer.showError(data.data);
-						}
-			})
-			
-		} 
-
-		// 百度地图API功能
-		function G(id) {
-			return document.getElementById(id);
-		}
-
-		//设置放大后的新地图
-		function setPlace() {
-			map.clearOverlays(); //清除地图上所有覆盖物
-			function myFun() {
-				var pp = local.getResults().getPoi(0).point; //获取第一个智能搜索的结果
-				console.log(pp.lng + " " + pp.lat);
-				//实现经纬度的存储
-				$("#lng").val(pp.lng);
-				$("#lat").val(pp.lat);
-				map.centerAndZoom(pp, 18);
-				map.addOverlay(new BMap.Marker(pp)); //添加标注
-			}
-			var local = new BMap.LocalSearch(map, { //智能搜索
-				onSearchComplete : myFun
-			});
-			local.search(myValue);
-		}
 
 	</script>
 </body>

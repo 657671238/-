@@ -35,7 +35,6 @@
 			margin-bottom:30px;
 		}
 		#l-map{
-			display:none;
 			position: absolute;
   			left: 30px;
  			top: 70px;
@@ -113,9 +112,9 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">确认修改</button>
-					<button type="button" class="btn btn-default" onclick="deltask()">撤销任务</button>
-					<button type="button" class="btn btn-default" onclick="update()">委派任务</button>
+					<button type="submit" class="btn btn-info">确认修改</button>
+					<button type="button" class="btn btn-info" onclick="deltask()">撤销任务</button>
+					<button type="button" class="btn btn-info" onclick="update()">委派任务</button>
 				</div>
 			</div>
 		</form>
@@ -131,9 +130,14 @@
 		var myValue;
 		//初始化函数
 		$(function(){
-
+			
+			// 初始化地图,设置城市和地图级别。
+			map = new BMap.Map("l-map");
+			
+			var center_lng = $("#lng").val();
+			var center_lat = $("#lat").val();
 			//点击地理位置输入框时地图才出现
-			$("#suggestId").focus(function() {
+/* 			$("#suggestId").focus(function() {
 				$("#l-map").show();
 				if($("#lng").val()!=null && $("#lng").val()!=""  ){
 					map.centerAndZoom(new BMap.Point(center_lng,center_lat), 18);
@@ -141,22 +145,19 @@
 					map.addOverlay(marker);
 				}
 				
-			});
+			}); */
 /* 			$("#suggestId").blur(function() {
 				$("#l-map").hide();
 			}); */
 			
-			
-			// 初始化地图,设置城市和地图级别。
-			map = new BMap.Map("l-map");
-			
-			var center_lng = $("#lng").val();
-			var center_lat = $("#lat").val();
-			if($("#lng").val()==null || $("#lng").val()==""  ){
+
+			if(center_lng==null || center_lng==""  ){
 				map.centerAndZoom(new BMap.Point(114.160676,30.671784), 12);
 			}
 			else{ 
 				map.centerAndZoom(new BMap.Point(center_lng,center_lat), 18);
+				marker = new BMap.Marker(new BMap.Point(center_lng, center_lat)); // 创建点
+				map.addOverlay(marker);
  			} 
 			
 			

@@ -30,6 +30,10 @@
  			background-color:#ffffff;
  			z-index:9999;
 		}
+		.btn_1{
+			background-color: #31b0d5;
+    		border-color: #269abc;
+		}
 	</style>
 </head>
 <body>
@@ -89,7 +93,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
-					<button type="submit" class="btn btn-default">确认发布</button>
+					<button type="submit" class="btn btn-info">确认发布</button>
 				</div>
 			</div>
 		</form>
