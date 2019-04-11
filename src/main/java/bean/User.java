@@ -3,13 +3,15 @@ package bean;
 import java.sql.Date;
 
 public class User {
+	/*用于存储用户信息，stat表示用户完成任务的状态
+	 */
 	private String phoneNumber;
 	private String pwd;
 	private String name;
 	private String school;
 	private Date birth;
 	private String image;
-	
+	private String state;
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -58,5 +60,11 @@ public class User {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 }

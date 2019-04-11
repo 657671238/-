@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import bean.User;
 import bean.task;
 
 public interface taskService {
@@ -26,4 +27,12 @@ public interface taskService {
 	public boolean delegate(int task_id,String[] users);
 	
 	public int requesttaskstate(int id);
+	
+	//获取任务请求人员
+	public List<User> getallrequestPerson(int taskid);
+	
+	
+	
+	
+	
 }

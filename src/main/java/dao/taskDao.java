@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import bean.User;
 import bean.task;
 
 public interface taskDao {
@@ -37,4 +38,5 @@ public interface taskDao {
 	
 	public int queryState(int id);
 
+	public List<User> queryallrequestPerson(int taskid);
 }

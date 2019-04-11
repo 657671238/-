@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sun.net.httpserver.Authenticator.Success;
 
+import bean.User;
 import bean.task;
 import dao.requestDao;
 import dao.taskDao;
@@ -94,6 +95,12 @@ public class taskService_imp implements taskService {
 	public int requesttaskstate(int id) {
 		taskDao rd = new taskDao_imp();
 		return rd.queryState(id);
+	}
+
+	public List<User> getallrequestPerson(int taskid) {
+		// TODO Auto-generated method stub
+		taskDao tDao = new taskDao_imp();
+		return tDao.queryallrequestPerson(taskid);
 	}
 }
 

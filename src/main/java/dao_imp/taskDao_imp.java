@@ -6,6 +6,7 @@ import java.util.List;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 
+import bean.User;
 import bean.task;
 import dao.taskDao;
 import util.MyDb;
@@ -224,6 +225,33 @@ public class taskDao_imp implements taskDao {
 			// TODO: handle exception
 		}
 		return tasklist;
+	}
+
+	public List<User> queryallrequestPerson(int taskid) {
+		// TODO Auto-generated method stub
+		List<User> users = new ArrayList<User>();
+		System.out.println("运行到了1处");
+		try {
+			String sql = "select * from requests , users where requestPhone=phoneNumber and state = 1 and task_ID = ?";
+			ResultSet rs = MyDb.getMyDb().query(sql, taskid);
+			while(rs.next()) {
+				User u = new User();
+				u.setPhoneNumber(rs.getString("phoneNumber"));
+				System.out.println("运行到了2处");
+				System.out.println(rs.getString("phoneNumber"));
+				u.setName(rs.getString("name"));
+				u.setImage(rs.getString("image"));
+				u.setSchool(rs.getString("school"));
+				users.add(u);
+			}
+			System.out.println(users.get(0));
+			return users;
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("这里时taskDao_imp的queryallrequestPerson报错");
+		}
+		return users;
 	}
 
 

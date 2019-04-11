@@ -49,6 +49,7 @@ public class showTaskServlet extends HttpServlet {
 			}
 			//任务已经发布，不可修改，进入任务进度页面
 			else {
+				req.getRequestDispatcher("showMypublishTaskServlet").forward(req, resp);
 				return;	
 			}
 		}
