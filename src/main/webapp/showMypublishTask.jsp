@@ -151,6 +151,7 @@
 			</div>
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
+					<button type="button" class="btn btn-info" onclick="finishtask()">完成验收</button>
 <!-- 					<button type="submit" class="btn btn-info">确认修改</button>
 					<button type="button" class="btn btn-info" onclick="deltask()">撤销任务</button>
 					<button type="button" class="btn btn-info" onclick="update()">委派任务</button> -->
@@ -174,9 +175,9 @@
 							<img src="/file/${row.image}" style="height:70px;width:70px;">
 						</div>
 						<div style="float: right;margin-right:15px"><span class="badge">
-						<font size="2" color="">完成状态:</font></span></div>
+						<font size="2" color="">完成状态:${row.state}</font></span></div>
 						<div class="username"><font size="5" >${row.name}</font>
-						<font size="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp请求时间:${row.school}</font></div>
+						<font size="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp请求时间:${row.date}</font></div>
 						<div class="date">学校:<font size="4" >${row.school}</font></div>	
 					</div>
 				</div>
@@ -196,7 +197,7 @@
 			//alert("查看请求人员");
 			window.location.href="showRequestPersonServlet?taskId="+${task.id};
 		};
-		function deltask(){
+		function finishtask(){
 			layer.open({
 				  title:"提示信息",
 				  content: '确认撤销任务？'

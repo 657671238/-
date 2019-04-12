@@ -3,7 +3,7 @@ package bean;
 import java.sql.Date;
 
 public class User {
-	/*用于存储用户信息，stat表示用户完成任务的状态
+	/*用于存储用户信息，(一下表示在展示请求人员时添加的逻辑功能：state表示用户完成任务的状态，date表示用户请求的时间)
 	 */
 	private String phoneNumber;
 	private String pwd;
@@ -12,6 +12,7 @@ public class User {
 	private Date birth;
 	private String image;
 	private String state;
+	private String date;
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -66,5 +67,11 @@ public class User {
 	}
 	public void setState(String state) {
 		this.state = state;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
 	}
 }

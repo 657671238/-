@@ -230,21 +230,19 @@ public class taskDao_imp implements taskDao {
 	public List<User> queryallrequestPerson(int taskid) {
 		// TODO Auto-generated method stub
 		List<User> users = new ArrayList<User>();
-		System.out.println("运行到了1处");
 		try {
 			String sql = "select * from requests , users where requestPhone=phoneNumber and state = 1 and task_ID = ?";
 			ResultSet rs = MyDb.getMyDb().query(sql, taskid);
 			while(rs.next()) {
 				User u = new User();
 				u.setPhoneNumber(rs.getString("phoneNumber"));
-				System.out.println("运行到了2处");
-				System.out.println(rs.getString("phoneNumber"));
 				u.setName(rs.getString("name"));
 				u.setImage(rs.getString("image"));
 				u.setSchool(rs.getString("school"));
+				u.setState(rs.getString("isFinish"));
+				u.setDate(rs.getString("requestDate"));
 				users.add(u);
 			}
-			System.out.println(users.get(0));
 			return users;
 			
 		} catch (Exception e) {
