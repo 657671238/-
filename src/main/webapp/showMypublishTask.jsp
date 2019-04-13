@@ -1,6 +1,18 @@
+<%@page import="bean.User"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%
+	List<User> user = (List<User>)request.getAttribute("users");
+	int success=1;
+	for(User u : user){
+		if(u.getState().equals("0")){
+			success=0;
+		}
+	}
+%> 	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -168,7 +180,7 @@
 			<div class="ulgroup">
 				<!-- 新闻列表 ，静态HTML代码与动态代码混合编程-->
 				<c:forEach items="${users}" var="row">
-					<div class="connes1">
+					<div class="connes1" id=${row.phoneNumber} onclick="find(this.id)">
 					<div class="list-group conntainn">
 						<div style="height:10px"></div>
 						<div class="user_photo">
@@ -190,33 +202,42 @@
 </body>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=IOq4Z8Vm45rpk0rdkind47dOHR7zAwAf"></script>
 	<script type="text/javascript" src="js/layer.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript">
-
+		function find(id){
+			window.location.href="trytochatroomServlet?phone="+id;
+		}
 
 		function update(){
 			//alert("查看请求人员");
 			window.location.href="showRequestPersonServlet?taskId="+${task.id};
 		};
 		function finishtask(){
-			layer.open({
-				  title:"提示信息",
-				  content: '确认撤销任务？'
-				  ,btn: ['取消', '确认撤销']
-				  ,yes: function(index, layero){
-					  layer.close(index);
-				    //按钮【按钮一】的回调
-				  }
-				  ,btn2: function(index, layero){
-				    //按钮【按钮二】的回调
-				    window.location.href="delTaskServlet?taskId="+${task.id};
-				    //return false 开启该代码可禁止点击该按钮关闭
-				  }
-				  ,cancel: function(){ 
-				    //右上角关闭回调
-				    
-				    //return false 开启该代码可禁止点击该按钮关闭
-				  }
-				});
+			var success = '<%=success%>';
+			console.log(success);
+			if(success=='0'){
+				alert("所有委派人员完成任务后才能执行此操作！");
+			}else{
+				layer.open({
+					  title:"提示信息",
+					  content: '确认任务完成？'
+					  ,btn: ['取消', '确认完成']
+					  ,yes: function(index, layero){
+						  layer.close(index);
+					    //按钮【按钮一】的回调
+					  }
+					  ,btn2: function(index, layero){
+					    //按钮【按钮二】的回调
+					  /*   window.location.href="delTaskServlet?taskId="+${task.id}; */
+					    //return false 开启该代码可禁止点击该按钮关闭
+					  }
+					  ,cancel: function(){ 
+					    //右上角关闭回调
+					    
+					    //return false 开启该代码可禁止点击该按钮关闭
+					  }
+					});
+			}
 			
 		};
 	</script>
