@@ -32,6 +32,12 @@ public class requestService_imp implements requestService {
  		return ls;
 	}
 
+	public boolean isRequest(request r) {
+		// TODO Auto-generated method stub
+		requestDao rd = new requestDao_imp();
+		return rd.isAdd(r);
+	}
+
 
 
 }

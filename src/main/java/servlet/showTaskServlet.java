@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.request;
 import bean.task;
+import service.requestService;
 import service.taskService;
+import service_imp.requestService_imp;
 import service_imp.taskService_imp;
 
 
@@ -54,10 +57,27 @@ public class showTaskServlet extends HttpServlet {
 			}
 		}
 		else {
-			task task = ts.queryone(task_Id);
-			req.setAttribute("task", task);
-			req.getRequestDispatcher("/showOtherTask.jsp").forward(req, resp);
-			return;
+			requestService rs = new requestService_imp();
+			request r = new request();
+			r.setTaskId(task_Id);
+			r.setMyPhone(us);
+			boolean hasrequest = rs.isRequest(r);
+			//判断用户是否已请求该任务，选择不同的逻辑
+			if(hasrequest) {
+				//判断已请求该任务后，应判断请求状态，成功与否
+				task task = ts.queryone(task_Id);
+				
+				req.setAttribute("task", task);
+				req.getRequestDispatcher("/showOtherRequestTask.jsp").forward(req, resp);
+				return;	
+			}else {
+				task task = ts.queryone(task_Id);
+				req.setAttribute("task", task);
+				req.getRequestDispatcher("/showOtherTask.jsp").forward(req, resp);
+			
+			
+			}
+			
 		}
 		
 	}
