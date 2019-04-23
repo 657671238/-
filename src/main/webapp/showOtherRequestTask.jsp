@@ -140,10 +140,12 @@
 				  content: '确认提交任务？'
 				  ,btn: ['取消', '确认完成']
 				  ,yes: function(index, layero){
+					  alert("该任务正在进行中！");
 					  layer.close(index);
 				    //按钮【按钮一】的回调
 				  }
 				  ,btn2: function(index, layero){
+					  alert("该任务正在进行中！111");
 				    //按钮【按钮二】的回调
 				  /*   window.location.href="delTaskServlet?taskId="+${task.id}; */
 				    //return false 开启该代码可禁止点击该按钮关闭
@@ -160,7 +162,11 @@
 			if(state==-1){
 				alert("该任务正在进行中！");
 			}
-			else{
+			if(state==-2){
+				alert("该任务已完成！");
+			}
+			//撤销任务逻辑
+			if(state>0){
 				window.location.href="requestTaskServlet?phone="+phone+"&&id="+id;
 			}
 		}
